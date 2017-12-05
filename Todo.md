@@ -1,0 +1,24 @@
+# Programs
+
+-   X Bash
+-   X C
+-   X C++
+-   X Python 2
+-   X Python 3
+-   Assembly
+-   C#
+-   Java
+-   JavaScript
+-   Perl
+-   SQL?
+-   PHP?
+-   TypeScript
+-   Ruby
+-   Swift
+-   R
+-   Perl
+-   Go
+-   Lua
+-   Haskell
+-   Rust
+-   Scala
