@@ -6,9 +6,9 @@
 -   X Python 2
 -   X Python 3
 -   Assembly
--   C#
--   Java
--   JavaScript
+-   X C#
+-   X Java
+-   X JavaScript
 -   Perl
 -   SQL?
 -   PHP?
@@ -18,7 +18,9 @@
 -   R
 -   Perl
 -   Go
--   Lua
+-   X Lua
 -   Haskell
 -   Rust
 -   Scala
+-   X Lisp
+-   X Ada
