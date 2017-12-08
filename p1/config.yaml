@@ -1,3 +1,2 @@
 C: $CWD/c.a
-C++: $CWD/cpp.a
-Java: java -cp $CWD java
+
