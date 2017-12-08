@@ -12,5 +12,5 @@ int main(int argc, char* argv[]){
     max = atoi(argv[1]) - 1;
   }
   int sum = SumDivisible(3, max) + SumDivisible(5, max) - SumDivisible(15, max);
-  printf("Sum of the multiples of 3 & 5: %i\n", sum);
+  printf("Sum of the multiples of 3 & 5 less than %i: %i\n", max + 1, sum);
 }

@@ -26,30 +26,30 @@ if [[ -e "$(1)" ]]; then \
 fi
 endef
 
-all: c.a cpp.a
+all: c.a cpp.a ada.a csharp.exe p1.class
 	printf "%b\n" "\033[0;32mCompiled all projects\033[0m"
 
 clean:
 	$(call Clean,c.a)
 	$(call Clean,cpp.a)
-	$(call Clean,src/java.class)
+	$(call Clean,p1.class)
 	$(call Clean,csharp.exe)
 	$(call Clean,ada.a)
-	$(call Clean,prime.o)
-	$(call Clean,prime.ali)
+	$(call Clean,p1.o)
+	$(call Clean,p1.ali)
 	printf "%b\n" "\033[0;33mRemoved all projects\033[0m"
 
-c.a: c.c
+c.a: p1.c
 	$(call Compile,$@,clang $^ -lm -O3 -o $@)
 
-cpp.a: cpp.cpp
+cpp.a: p1.cpp
 	$(call Compile,$@,clang++ $^ -lm -O3 -o $@)
 
-java.class: java.java
+p1.class: p1.java
 	$(call Compile,$@,javac $^)
 
-csharp.exe: csharp.cs
+csharp.exe: p1.cs
 	$(call Compile,$@,mcs $^ -out:$@)
 
-ada.a: prime.adb
+ada.a: p1.adb
 	$(call Compile,$@,gnatmake -o $@ $^)
