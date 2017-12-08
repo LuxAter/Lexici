@@ -1,213 +1,114 @@
 #!/usr/bin/python3
+"""Runs programs in sub directories measuring execution times."""
 
-import sys
-import glob
-import subprocess
 import time
+import subprocess
+import math
 import argparse
 import os
 import stat
-from math import floor
-from pprint import pprint
+import yaml
 
 
-def run(programs, runs, args):
-    print("\n")
-    data = dict()
-    for pg in programs:
-        for x in range(0, runs):
-            print("\033[F\033[33m[{:{}}/{}] {}...".format(
-                x, len(str(runs)), runs, pg))
-            start = time.time()
-            if args is None:
-                args = list()
-            subprocess.run(['./' + pg] + args, stdout=subprocess.PIPE)
-            end = time.time()
-            language = pg.split('.')[0].title()
-            if language not in data:
-                data[language] = [end - start]
-            else:
-                data[language].append(end - start)
-        print("\033[F\033[32m[{}/{}] {}...\n".format(runs, runs, pg))
-    print("\033[0m", end='')
+import pprint
+
+
+def run(program, count, args):
+    """Runs provided executable count times provided with args."""
+    data = list()
+    if isinstance(program, str):
+        if program[0] != '.':
+            program = ['./' + program]
+        else:
+            program = [program]
+    if args is None:
+        args = list()
+    print()
+    for run_count in range(0, count):
+        print("\033[F\033[33m[{:{}}/{}] {}...".format(run_count,
+                                                      len(str(count)), count, program))
+        start = time.time()
+        subprocess.run(program + args, stdout=subprocess.PIPE)
+        end = time.time()
+        data.append(end - start)
+    print("\033[F\033[32m[{}/{}] {}...\033[0m\n".format(count, count, program))
     return data
 
 
-def average(data):
-    for key, value in data.items():
-        avg = float(0)
-        long = float(0)
-        short = float('inf')
-        for t in value:
-            avg += t
-            long = max(t, long)
-            short = min(t, short)
-        avg /= len(value)
-        data[key].insert(0, long)
-        data[key].insert(0, short)
-        data[key].insert(0, avg)
+def average(times):
+    """Calculates average time"""
+    avg = float(0)
+    for _t in times:
+        avg += _t
+    avg /= len(times)
+    return avg
 
 
-def get_duration(t):
-    sec = floor(t)
-    t -= sec
-    t *= 1000
-    milli_sec = floor(t)
-    t -= milli_sec
-    t *= 1000
-    micro_sec = floor(t)
-    t -= micro_sec
-    t *= 1000
-    nano_sec = floor(t)
-    return "{:3}s {:3}ms {:3}μs {:3}ns".format(sec, milli_sec, micro_sec,
-                                               nano_sec)
+def diviation(times, avg):
+    """Calculates standard diviation of times"""
+    tot = float()
+    for _t in times:
+        tot = pow(_t - avg, 2)
+    tot /= (len(times) - 1)
+    return math.sqrt(tot)
 
 
-#  return "{:03}s {:03}ms {:03}μs {:03}ns".format(sec, milli_sec, micro_sec, nano_sec)
+def run_entry(program, count, args):
+    """Generates dictionary entry relevant to provided arguments"""
+    data = dict()
+    data["times"] = run(program, count, args)
+    data["average"] = average(data["times"])
+    data["min"] = min(data["times"])
+    data["max"] = max(data["times"])
+    data["diviation"] = diviation(data["times"], data["average"])
+    return data
 
 
-def print_table(table, has_title=False, colors=list(), col=None):
-    if col is not None:
-        lengths = [0] * col
+def generate_cmds(args):
+    """Scans directory, or reads config for commands to run"""
+    cmds = dict()
+    executable = stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH
+    if args.config is None:
+        for filename in os.listdir(args.dir):
+            if os.path.isfile(os.path.join(args.dir, filename)) and filename != "run.py":
+                _st = os.stat(os.path.join(args.dir, filename))
+                mode = _st.st_mode
+                if mode & executable:
+                    cmds[filename.split('.')[0].title()] = os.path.join(
+                        args.dir, filename)
     else:
-        lengths = [0] * len(table[0])
-    while len(colors) < len(lengths):
-        colors.append("")
-    for i, color in enumerate(colors):
-        if type(color) is int:
-            colors[i] = "\033[{}m".format(color)
-    for row in table:
-        for i in range(0, len(lengths)):
-            if type(row[i]) is not str:
-                lengths[i] = max(len(str(row[i]) + 2, lengths[i]))
-            else:
-                lengths[i] = max(len(row[i]) + 2, lengths[i])
-    if has_title is True:
-        titles = table[0]
-        table = table[1:]
-        print("\u250f", end='')
-        for length in lengths[:-1]:
-            print("\u2501" * length, end='')
-            print("\u2533", end='')
-        print("\u2501" * lengths[-1], end='')
-        print("\u2513")
-        print("\u2503", end='')
-        for i, ent in enumerate(titles):
-            print(" {:{width}}".format(ent, width=lengths[i] - 1), end='')
-            print("\u2503", end='')
-        print("")
-        print("\u2521", end='')
-        for length in lengths[:-1]:
-            print("\u2501" * length, end='')
-            print("\u2547", end='')
-        print("\u2501" * lengths[-1], end='')
-        print("\u2529")
-
-    else:
-        print("\u250c", end='')
-        for length in lengths[:-1]:
-            print("\u2500" * length, end='')
-            print("\u252c", end='')
-        print("\u2500" * lengths[-1], end='')
-        print("\u2510")
-    for entry in table:
-        print("\u2502", end='')
-        for i in range(0, len(lengths)):
-            print(
-                "{} {:{width}}\033[0m".format(
-                    colors[i], entry[i], width=lengths[i] - 1),
-                end='')
-            print("\u2502", end='')
-        print("")
-    print("\u2514", end='')
-    for length in lengths[:-1]:
-        print("\u2500" * length, end='')
-        print("\u2534", end='')
-    print("\u2500" * lengths[-1], end='')
-    print("\u2518")
+        cmds = yaml.load(open(os.path.join(args.dir, args.config)))
+        for key, value in cmds.items():
+            cmds[key] = value.replace(
+                "$CWD", os.path.join(os.getcwd(), args.dir))
+    return cmds
 
 
-def print_result(data):
-    table = list()
-    for key, value in data.items():
-        table.append([
-            key,
-            get_duration(value[0]),
-            get_duration(value[1]),
-            get_duration(value[2]), value[0], value[1], value[2]
-        ])
-    table = sorted(table, key=lambda x: x[0])
-    print_table(
-        [["Executable", "Average", "Best", "Worst"]] + table,
-        has_title=True,
-        colors=[1, 39, 32, 31])
-    table = sorted(table, key=lambda x: x[4])
-    summary = [["Best"] + table[0], ["Worst"] + table[-1]]
-    print_table(summary, colors=[1, 1, 39, 32, 31], col=5)
-
-
-def in_list(exe, li):
-    for el in li:
-        if exe.split('.')[0].lower() == el.split('.')[0].lower():
-            return exe
-    return None
+def run_cmds(cmds, args):
+    data = dict()
+    for key, value in cmds.items():
+        data[key] = run_entry(value, args.runs, args.args)
 
 
 def main():
+    """Main function"""
     parser = argparse.ArgumentParser(
-        description=
-        "Runs speed tests, of all executable applications in the directory")
-    parser.add_argument(
-        "-i",
-        type=int,
-        default=5,
-        help="The number of times to run each executable")
-    parser.add_argument(
-        "--args",
-        type=str,
-        nargs='+',
-        help="Additional arguments to pass to each executable")
-    parser.add_argument(
-        "--list",
-        action="store_true",
-        help="List all of the executables that will be run implemented")
-    parser.add_argument(
-        "--whitelist",
-        type=str,
-        nargs='+',
-        help="Run only selected applications")
-    parser.add_argument(
-        "--blacklist",
-        type=str,
-        nargs='+',
-        help="Dont run selected applications")
+        description="Runs executables in directory, providing time compairisions.")
+    parser.add_argument("dir", metavar="DIR", type=str, nargs='?',
+                        default=os.getcwd(), help="Directory to run executables from")
+    parser.add_argument("--sort", type=str, nargs='?', default='avg',
+                        help="Sorts result data", choices=["avg", "max", "min", "name", "div"])
+    parser.add_argument("-c", "--config", metavar="CONFIG", type=str, nargs='?',
+                        default=None, help="Config yaml, for configuring tests")
+    parser.add_argument("-r", "--runs", type=int, nargs='?',
+                        default=5, help="Runs each program this many times")
+    parser.add_argument("-a", "--args", metavar="ARGS", type=str,
+                        nargs='*', help="Pass additional argumentes to each program")
     args = parser.parse_args()
-    programs = list()
-    executable = stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH
-    for filename in os.listdir('.'):
-        if os.path.isfile(filename) and filename != "run.py":
-            st = os.stat(filename)
-            mode = st.st_mode
-            if mode & executable:
-                programs.append(filename)
-    programs.sort()
-
-    if args.blacklist is not None:
-        for pg in programs[:]:
-            if in_list(pg, args.blacklist) is not None:
-                programs.remove(pg)
-    if args.whitelist is not None:
-        for pg in programs[:]:
-            if in_list(pg, args.whitelist) is None:
-                programs.remove(pg)
-
-    if args.list is True:
-        for pg in programs:
-            print(" \u2022", pg.split('.')[0].title())
-    else:
-        data = run(programs, args.i, args.args)
-        average(data)
-        print_result(data)
+    if args.dir.startswith('/') is False:
+        args.dir = os.path.join(os.getcwd(), args.dir)
+    print(generate_cmds(args))
+    print(args)
 
 
 if __name__ == "__main__":
