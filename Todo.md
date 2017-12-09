@@ -14,7 +14,7 @@
 -   [ ] PHP?
 -   [ ] TypeScript
 -   [x] Ruby
--   [ ] Swift
+-   [x] Swift
 -   [x] R
 -   [x] Perl
 -   [x] Go
