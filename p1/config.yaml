@@ -1,6 +1,0 @@
-C: $CWD/c.a
-C++: $CWD/cpp.a
-Ada: $CWD/ada.a
-Bash: $CWD/bash.sh
-C\#: $CWD/csharp.exe
-Java: java -cp $CWD p1

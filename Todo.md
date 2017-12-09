@@ -1,26 +1,26 @@
 # Programs
 
--   X Bash
--   X C
--   X C++
--   X Python 2
--   X Python 3
--   Assembly
--   X C#
--   X Java
--   X JavaScript
--   Perl
--   SQL?
--   PHP?
--   TypeScript
--   Ruby
--   Swift
--   R
--   Perl
--   Go
--   X Lua
--   Haskell
--   Rust
--   Scala
--   X Lisp
--   X Ada
+-   [x] Bash
+-   [x] Bash
+-   [x] C
+-   [x] C++
+-   [x] Python 2
+-   [x] Python 3
+-   [ ] Assembly
+-   [x] C#
+-   [x] Java
+-   [x] JavaScript
+-   [ ] SQL?
+-   [ ] PHP?
+-   [ ] TypeScript
+-   [x] Ruby
+-   [ ] Swift
+-   [x] R
+-   [x] Perl
+-   [x] Go
+-   [x] Lua
+-   [ ] Haskell
+-   [x] Rust
+-   [x] Scala
+-   [x] Lisp
+-   [x] Ada

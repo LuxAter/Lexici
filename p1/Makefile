@@ -26,7 +26,7 @@ if [[ -e "$(1)" ]]; then \
 fi
 endef
 
-all: c.a cpp.a ada.a csharp.exe p1.class
+all: c.a cpp.a ada.a csharp.exe p1.class go rust
 	printf "%b\n" "\033[0;32mCompiled all projects\033[0m"
 
 clean:
@@ -37,6 +37,7 @@ clean:
 	$(call Clean,ada.a)
 	$(call Clean,p1.o)
 	$(call Clean,p1.ali)
+	$(call Clean,go)
 	printf "%b\n" "\033[0;33mRemoved all projects\033[0m"
 
 c.a: p1.c
@@ -53,3 +54,8 @@ csharp.exe: p1.cs
 
 ada.a: p1.adb
 	$(call Compile,$@,gnatmake -o $@ $^)
+go: go.go
+	$(call Compile,$@,go build $^)
+
+rust: p1.rs
+	$(call Compile,$@,rustc $^ -o $@)

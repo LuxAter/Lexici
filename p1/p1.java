@@ -6,9 +6,9 @@ public class p1{
   public static void main(String[] args){
     int max = 999;
     if (args.length >= 1){
-      max = Integer.parseInt(args[0]);
+      max = Integer.parseInt(args[0]) - 1;
     }
     int sum = SumDivisible(3, max) + SumDivisible(5, max) - SumDivisible(15, max);
-    System.out.printf("Sum of the multipes of 3 & 5 less than %d: %d\n", max + 1, sum);
+    System.out.printf("Sum of the multiples of 3 & 5 less than %d: %d\n", max + 1, sum);
   }
 }

@@ -31,10 +31,14 @@ def run(program, count, args, title=None):
         print("\033[F\033[33m[{:{}}/{}] {}...".format(run_count, len(
             str(count)), count, title))
         start = time.time()
-        res = subprocess.run(
-            program + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        try:
+            res = subprocess.run(
+                program + args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        except:
+            errored = 1
+            break
         if res.stderr.decode('utf-8') is not str():
-            errored = True
+            errored = 2
             break
         end = time.time()
         data.append(end - start)
@@ -42,8 +46,11 @@ def run(program, count, args, title=None):
         run_count += 1
         print("\033[F\033[32m[{:{}}/{}] {}   \033[0m".format(
             run_count, len(str(count)), count, title))
-    else:
+    elif errored == 2:
         print("\033[F\033[31m[{:{}}/{}] {}   \033[0m".format(
+            run_count, len(str(count)), count, title))
+    elif errored == 1:
+        print("\033[F\033[1;31m[{:{}}/{}] {}   \033[0m".format(
             run_count, len(str(count)), count, title))
     return data
 
@@ -121,7 +128,9 @@ def generate_cmds(args):
 def run_cmds(cmds, args):
     data = dict()
     for key, value in cmds.items():
-        data[key] = run_entry(value, args.runs, args.args)
+        ret = run_entry(value, args.runs, args.args)
+        if len(ret["times"]) != 0:
+            data[key] = ret
     return data
 
 
