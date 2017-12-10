@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.build/master.swiftdeps"
+  },
+  "/home/arden/Programming/speed_test/p1/swift/Sources/swift/main.swift": {
+    "dependencies": "/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.build/main.d",
+    "object": "/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.build/main.swift.o",
+    "swiftmodule": "/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.build/main~partial.swiftmodule",
+    "swift-dependencies": "/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.build/main.swiftdeps"
+  }
+}

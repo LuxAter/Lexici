@@ -1,0 +1,43 @@
+client:
+  name: swift-build
+tools: {}
+targets:
+  "main": ["<swift.module>","<swift.exe>"]
+  "test": ["<swift.module>","<swift.exe>"]
+  "swift.module": ["<swift.module>"]
+  "swift.exe": ["<swift.exe>"]
+default: "main"
+commands: 
+  "<C.swift.exe>":
+    tool: phony
+    inputs: ["/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift"]
+    outputs: ["<swift.exe>"]
+
+  "<C.swift.module>":
+    tool: phony
+    inputs: ["/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.swiftmodule"]
+    outputs: ["<swift.module>"]
+
+  "C.swift.exe":
+    tool: shell
+    description: "Linking ./.build/x86_64-unknown-linux/debug/swift"
+    inputs: ["/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.build/main.swift.o"]
+    outputs: ["/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift"]
+    args: ["/home/arden/Applications/swift/usr/bin/swiftc","-target","x86_64-unknown-linux","-sdk","/","-g","-L","/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug","-o","/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift","-module-name","swift","-emit-executable","-Xlinker","-rpath=$ORIGIN","/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.build/main.swift.o"]
+
+  "C.swift.module":
+    tool: swift-compiler
+    executable: "/home/arden/Applications/swift/usr/bin/swiftc"
+    module-name: "swift"
+    module-output-path: "/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.swiftmodule"
+    inputs: ["/home/arden/Programming/speed_test/p1/swift/Sources/swift/main.swift"]
+    outputs: ["/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.build/main.swift.o","/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.swiftmodule"]
+    import-paths: ["/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug"]
+    temps-path: "/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.build"
+    objects: ["/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/swift.build/main.swift.o"]
+    other-args: ["-swift-version","4","-target","x86_64-unknown-linux","-sdk","/","-Onone","-g","-enable-testing","-j4","-DSWIFT_PACKAGE","-module-cache-path","/home/arden/Programming/speed_test/p1/swift/.build/x86_64-unknown-linux/debug/ModuleCache"]
+    sources: ["/home/arden/Programming/speed_test/p1/swift/Sources/swift/main.swift"]
+    is-library: false
+    enable-whole-module-optimization: false
+    num-threads: "4"
+

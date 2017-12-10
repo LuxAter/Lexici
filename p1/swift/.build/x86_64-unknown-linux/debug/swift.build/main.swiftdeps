@@ -1,0 +1,165 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "SumDivisible"
+- "max"
+- "sum"
+provides-nominal:
+provides-member:
+depends-top-level:
+- !private "*"
+- "+"
+- "-"
+- !private "/"
+- ">"
+- "AssignmentPrecedence"
+- "CommandLine"
+- "FloatLiteralType"
+- "Int"
+- "IntegerLiteralType"
+- "StringLiteralType"
+- "SumDivisible"
+- "max"
+- "print"
+- "sum"
+depends-member:
+- ["Sa", "subscript"]
+- ["s23BidirectionalCollectionP", "init"]
+- ["s23BidirectionalCollectionP", "subscript"]
+- ["s13BinaryIntegerP", "init"]
+- ["Sb", "_getBuiltinLogicValue"]
+- ["s7CVarArgP", "init"]
+- ["s10CollectionP", "init"]
+- ["s10CollectionP", "subscript"]
+- ["s11CommandLineO", "argc"]
+- ["s11CommandLineO", "arguments"]
+- ["s10ComparableP", "init"]
+- ["s28CustomDebugStringConvertibleP", "init"]
+- ["s28CustomDebugStringConvertibleP", "subscript"]
+- ["s29CustomPlaygroundQuickLookableP", "_getBuiltinLogicValue"]
+- ["s29CustomPlaygroundQuickLookableP", "init"]
+- ["s17CustomReflectableP", "_getBuiltinLogicValue"]
+- ["s17CustomReflectableP", "init"]
+- ["s17CustomReflectableP", "subscript"]
+- ["s23CustomStringConvertibleP", "_getBuiltinLogicValue"]
+- ["s23CustomStringConvertibleP", "init"]
+- ["s23CustomStringConvertibleP", "subscript"]
+- ["s9DecodableP", "_getBuiltinLogicValue"]
+- ["s9DecodableP", "init"]
+- ["s9DecodableP", "subscript"]
+- ["s9EncodableP", "_getBuiltinLogicValue"]
+- ["s9EncodableP", "init"]
+- ["s9EncodableP", "subscript"]
+- ["s9EquatableP", "_getBuiltinLogicValue"]
+- ["s9EquatableP", "init"]
+- ["s25ExpressibleByArrayLiteralP", "subscript"]
+- ["s27ExpressibleByBooleanLiteralP", "_getBuiltinLogicValue"]
+- ["s43ExpressibleByExtendedGraphemeClusterLiteralP", "init"]
+- ["s27ExpressibleByIntegerLiteralP", "init"]
+- ["s26ExpressibleByStringLiteralP", "init"]
+- ["s33ExpressibleByUnicodeScalarLiteralP", "init"]
+- ["s17FixedWidthIntegerP", "init"]
+- ["s8HashableP", "_getBuiltinLogicValue"]
+- ["s8HashableP", "init"]
+- ["Si", "init"]
+- ["s25LosslessStringConvertibleP", "_getBuiltinLogicValue"]
+- ["s25LosslessStringConvertibleP", "init"]
+- ["s10MirrorPathP", "init"]
+- ["s17MutableCollectionP", "subscript"]
+- ["s7NumericP", "init"]
+- ["s22RandomAccessCollectionP", "subscript"]
+- ["s26RangeReplaceableCollectionP", "init"]
+- ["s26RangeReplaceableCollectionP", "subscript"]
+- ["s8SequenceP", "init"]
+- ["s8SequenceP", "subscript"]
+- ["s13SignedIntegerP", "init"]
+- ["s13SignedNumericP", "init"]
+- ["s10StrideableP", "init"]
+- ["SS", "init"]
+- ["s14StringProtocolP", "init"]
+- ["s16TextOutputStreamP", "init"]
+- ["s20TextOutputStreamableP", "init"]
+- ["s14_ArrayProtocolP", "subscript"]
+- ["s23_BidirectionalIndexableP", "init"]
+- ["s23_BidirectionalIndexableP", "subscript"]
+- ["s18_BitwiseOperationsP", "init"]
+- ["s24_DestructorSafeContainerP", "subscript"]
+- ["s35_ExpressibleByBuiltinBooleanLiteralP", "_getBuiltinLogicValue"]
+- ["s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP", "init"]
+- ["s35_ExpressibleByBuiltinIntegerLiteralP", "init"]
+- ["s34_ExpressibleByBuiltinStringLiteralP", "init"]
+- ["s39_ExpressibleByBuiltinUTF16StringLiteralP", "init"]
+- ["s41_ExpressibleByBuiltinUnicodeScalarLiteralP", "init"]
+- ["s33_ExpressibleByStringInterpolationP", "init"]
+- ["s10_IndexableP", "init"]
+- ["s10_IndexableP", "subscript"]
+- ["s14_IndexableBaseP", "init"]
+- ["s14_IndexableBaseP", "subscript"]
+- ["s17_MutableIndexableP", "subscript"]
+- ["s22_RandomAccessIndexableP", "subscript"]
+- ["s26_RangeReplaceableIndexableP", "init"]
+- ["s26_RangeReplaceableIndexableP", "subscript"]
+- ["s11_StrideableP", "init"]
+- ["s16_SwiftStringViewP", "init"]
+depends-nominal:
+- "Sa"
+- "s23BidirectionalCollectionP"
+- "s13BinaryIntegerP"
+- "Sb"
+- "s7CVarArgP"
+- "s10CollectionP"
+- "s11CommandLineO"
+- "s10ComparableP"
+- "s28CustomDebugStringConvertibleP"
+- "s29CustomPlaygroundQuickLookableP"
+- "s17CustomReflectableP"
+- "s23CustomStringConvertibleP"
+- "s9DecodableP"
+- "s9EncodableP"
+- "s9EquatableP"
+- "s25ExpressibleByArrayLiteralP"
+- "s27ExpressibleByBooleanLiteralP"
+- "s43ExpressibleByExtendedGraphemeClusterLiteralP"
+- "s27ExpressibleByIntegerLiteralP"
+- "s26ExpressibleByStringLiteralP"
+- "s33ExpressibleByUnicodeScalarLiteralP"
+- "s17FixedWidthIntegerP"
+- "s8HashableP"
+- "Si"
+- "s25LosslessStringConvertibleP"
+- "s10MirrorPathP"
+- "s17MutableCollectionP"
+- "s7NumericP"
+- "s22RandomAccessCollectionP"
+- "s26RangeReplaceableCollectionP"
+- "s8SequenceP"
+- "s13SignedIntegerP"
+- "s13SignedNumericP"
+- "s10StrideableP"
+- "SS"
+- "s14StringProtocolP"
+- "s16TextOutputStreamP"
+- "s20TextOutputStreamableP"
+- "s14_ArrayProtocolP"
+- "s23_BidirectionalIndexableP"
+- "s18_BitwiseOperationsP"
+- "s24_DestructorSafeContainerP"
+- "s35_ExpressibleByBuiltinBooleanLiteralP"
+- "s51_ExpressibleByBuiltinExtendedGraphemeClusterLiteralP"
+- "s35_ExpressibleByBuiltinIntegerLiteralP"
+- "s34_ExpressibleByBuiltinStringLiteralP"
+- "s39_ExpressibleByBuiltinUTF16StringLiteralP"
+- "s41_ExpressibleByBuiltinUnicodeScalarLiteralP"
+- "s33_ExpressibleByStringInterpolationP"
+- "s10_IndexableP"
+- "s14_IndexableBaseP"
+- "s17_MutableIndexableP"
+- "s22_RandomAccessIndexableP"
+- "s26_RangeReplaceableIndexableP"
+- "s11_StrideableP"
+- "s16_SwiftStringViewP"
+depends-dynamic-lookup:
+depends-external:
+- "/home/arden/Applications/swift/usr/lib/swift/linux/x86_64/Swift.swiftmodule"
+- "/home/arden/Applications/swift/usr/lib/swift/linux/x86_64/SwiftOnoneSupport.swiftmodule"
+- "/home/arden/Applications/swift/usr/lib/swift/linux/x86_64/glibc.modulemap"
+interface-hash: "38b148e563fde8fdf2219144e736f37e"

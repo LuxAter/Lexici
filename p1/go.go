@@ -11,7 +11,7 @@ func SumDivisible(n, max int) int {
 
 func main(){
   var max int = 999
-  if (len(os.Args) > 1){
+  if len(os.Args) > 1{
     if s, err := strconv.Atoi(os.Args[1]); err == nil {
       max = s - 1
     }
