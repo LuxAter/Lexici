@@ -16,5 +16,5 @@ int main(int argc, char* argv[]){
     b = c + a;
     c = a + b;
   }
-  printf("Sum of even fibonacci nubers less than %i: %i\n", limit, sum);
+  printf("Sum of even fibonacci numbers less than %i: %i\n", limit, sum);
 }
