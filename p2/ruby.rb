@@ -6,7 +6,7 @@ a = 1
 b = 1
 c = 2
 if ARGV.length >= 1 then
-    limit = ARGV[1].to_i
+    limit = ARGV[0].to_i
 end
 
 while c < limit do

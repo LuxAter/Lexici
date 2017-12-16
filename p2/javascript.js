@@ -6,7 +6,7 @@ let a = 1;
 let b = 1;
 let c = 2;
 if(process.argv.length > 2){
-  max = proces.argv[2]
+  max = process.argv[2]
 }
 while(c < limit){
   sum += c;

@@ -1,5 +1,5 @@
 object P2 {
-  def mina(args: Array[String]){
+  def main(args: Array[String]){
     var limit:Int = 4000000
     var sum:Int = 0
     var a:Int = 1

@@ -1,0 +1,95 @@
+V "GNAT Lib v7"
+M P W=b
+P SS ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV SPARK_05
+
+U p3%b			p3.adb			226230d6 NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+W ada.exceptions%s	a-except.adb		a-except.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.numerics%s	a-numeri.ads		a-numeri.ali
+Z ada.numerics.aux%s	a-numaux.adb		a-numaux.ali
+W ada.numerics.generic_elementary_functions%s
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W system.concat_4%s	s-conca4.adb		s-conca4.ali
+W system.exn_llf%s	s-exnllf.adb		s-exnllf.ali
+W system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
+W system.img_lli%s	s-imglli.adb		s-imglli.ali
+W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W system.val_lli%s	s-vallli.adb		s-vallli.ali
+
+D ada.ads		20170106103348 76789da1 ada%s
+D a-comlin.ads		20140225151544 ea62afbc ada.command_line%s
+D a-except.ads		20151016123252 291912d5 ada.exceptions%s
+D a-inteio.ads		20070406091342 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20140225151544 e4a01f64 ada.io_exceptions%s
+D a-numeri.ads		20080324174807 bb51c45a ada.numerics%s
+D a-numaux.ads		20140801094828 243fe0b7 ada.numerics.aux%s
+D a-ngelfu.ads		20151016131424 b8fdcb46 ada.numerics.generic_elementary_functions%s
+D a-ngelfu.adb		20151020124036 5e96a931 ada.numerics.generic_elementary_functions%b
+D a-stream.ads		20141120112812 119b8fb3 ada.streams%s
+D a-tags.ads		20151016130316 01f5e3ef ada.tags%s
+D a-textio.ads		20140717063745 386df5d4 ada.text_io%s
+D a-tiinio.ads		20140717063513 aa04e5d6 ada.text_io.integer_io%s
+D a-unccon.ads		20170106103348 31484697 ada.unchecked_conversion%s
+D interfac.ads		20160502101001 5ab55268 interfaces%s
+D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
+D p3.adb		20171215040333 bedb285c p3%b
+D system.ads		20170510173650 4635ec04 system%s
+D s-conca4.ads		20140225151544 7e642b20 system.concat_4%s
+D s-crtl.ads		20141120112812 0ebbdb71 system.crtl%s
+D s-exctab.ads		20140225151139 54135002 system.exception_table%s
+D s-exnllf.ads		20150526102925 bc7ebbdc system.exn_llf%s
+D s-fatflt.ads		20090409150019 11beb392 system.fat_flt%s
+D s-fatgen.ads		20150107111315 49cbaf86 system.fat_gen%s
+D s-ficobl.ads		20140718105747 078245e4 system.file_control_block%s
+D s-imglli.ads		20090409150019 114f55d1 system.img_lli%s
+D s-parame.ads		20140801093848 7e2a0d7f system.parameters%s
+D s-secsta.ads		20170112134946 9751b57e system.secondary_stack%s
+D s-soflin.ads		20151020124036 14e1eb6c system.soft_links%s
+D s-stache.ads		20140225151139 a37c21ec system.stack_checking%s
+D s-stalib.ads		20151112104907 09bd3940 system.standard_library%s
+D s-stoele.ads		20140225151139 2dc34a04 system.storage_elements%s
+D s-traent.ads		20140730135025 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20160502101423 34867c83 system.unsigned_types%s
+D s-vallli.ads		20090409150019 9a24e6a0 system.val_lli%s
+D s-wchcon.ads		20140718092328 1b7d22d2 system.wch_con%s
+X 1 ada.ads
+16K9*Ada 20e8 17|1r6 1r23 2r6 2r31 3r6 4r6 4r28 8r34
+X 2 a-comlin.ads
+38K13*Command_Line 139e21 17|4w10 4r32
+41V13*Argument_Count{natural} 17|17s6
+48V13*Argument{string} 17|18s22
+X 4 a-inteio.ads
+18K13*Integer_Text_IO[13|46] 17|2w10 2r35
+X 6 a-numeri.ads
+16K13*Numerics 32e17 17|3r10 8r38
+X 8 a-ngelfu.ads
+39k22*Generic_Elementary_Functions 170e46 17|3w19 8r47
+42V13 Sqrt{float} 17|28s23[8] 36s27[8]
+X 12 a-textio.ads
+49K13*Text_IO 471e16 17|1w10 1r27
+263U14*Put_Line 17|43s3
+X 17 p3.adb
+6U11*P3 6b11 44l5 44t7
+7I8 Int64<long_integer> 11r6 12r8 13r16 14r11 15r15 18r10 28r17 36r21 43r45
+. 43r70
+8K11 Value_Functions[8|39] 10r7
+11i3 n{7I8} 12r17 18m5 19r12 21r6 23m5 23r10 24r11 25m7 25r12 28r34 29r9
+. 30r8 31m7 31r12 33r13 34m9 34r14 36r38 40r6 41r20
+12i3 max{7I8} 19m5 43r57
+13i3 last_factor{7I8} 22m5 32m7 41m5 43r82
+14i3 factor{7I8} 29r19 30r14 31r16 32r22 33r19 34r18 38m5 38r15
+15i3 max_factor{7I8} 28m3 29r29 36m7
+
