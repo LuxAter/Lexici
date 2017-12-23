@@ -23,16 +23,20 @@ procedure P4 is
   max:Integer := 999;
   count:Integer := 3;
   largest:Integer := 0;
+  tmp:Integer := 0;
 begin
   if Argument_Count >= 1 then
     count := Integer'Value(Argument(1));
+    tmp := count;
+    max := 0;
     while count > 0 loop
       max := (max * 10) + 9;
       count := count - 1;
     end loop;
+    count := tmp;
     a := max;
   end if;
-  while a >= 100 loop
+  while a >= 10 * count loop
     if a mod 11 = 0 then
       b := max;
       db := 1;
@@ -51,6 +55,6 @@ begin
     end loop;
     a := a - 1;
   end loop;
-  Put_Line(Integer'Image(largest));
+  Put_Line("Largest palandrome multiples of" & Integer'Image(count) & " digits:" & Integer'Image(largest));
 end P4;
 

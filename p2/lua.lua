@@ -13,7 +13,7 @@ b = 1
 c = 2
 
 if(TableLength(arg) > 2) then
-  limit = arg[1]
+  limit = tonumber(arg[1])
 end
 
 while(c < limit) do

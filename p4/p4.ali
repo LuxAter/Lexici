@@ -5,13 +5,15 @@ P SS ZX
 RN
 RV NO_IO
 RV NO_SECONDARY_STACK
+RV NO_DYNAMIC_SIZED_OBJECTS
 RV SPARK_05
 
-U p4%b			p4.adb			6812b33d NE OO SU
+U p4%b			p4.adb			417e48f0 NE OO SU
 W ada%s			ada.ads			ada.ali
 W ada.command_line%s	a-comlin.adb		a-comlin.ali
 W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
 W ada.text_io%s		a-textio.adb		a-textio.ali
+W system.concat_4%s	s-conca4.adb		s-conca4.ali
 W system.img_int%s	s-imgint.adb		s-imgint.ali
 W system.secondary_stack%s  s-secsta.adb	s-secsta.ali
 W system.val_int%s	s-valint.adb		s-valint.ali
@@ -28,8 +30,9 @@ D a-tiinio.ads		20140717063513 aa04e5d6 ada.text_io.integer_io%s
 D a-unccon.ads		20170106103348 31484697 ada.unchecked_conversion%s
 D interfac.ads		20160502101001 5ab55268 interfaces%s
 D i-cstrea.ads		20140801100435 e53d8b8e interfaces.c_streams%s
-D p4.adb		20171216234048 4c5660f1 p4%b
+D p4.adb		20171223163506 653a9b3c p4%b
 D system.ads		20170510173650 4635ec04 system%s
+D s-conca4.ads		20140225151544 7e642b20 system.concat_4%s
 D s-crtl.ads		20141120112812 0ebbdb71 system.crtl%s
 D s-exctab.ads		20140225151139 54135002 system.exception_table%s
 D s-ficobl.ads		20140718105747 078245e4 system.file_control_block%s
@@ -48,25 +51,26 @@ X 1 ada.ads
 16K9*Ada 20e8 13|1r6 1r23 2r6 2r31 3r6 3r28
 X 2 a-comlin.ads
 38K13*Command_Line 139e21 13|3w10 3r32
-41V13*Argument_Count{natural} 13|27s6
-48V13*Argument{string} 13|28s28
+41V13*Argument_Count{natural} 13|28s6
+48V13*Argument{string} 13|29s28
 X 4 a-inteio.ads
 18K13*Integer_Text_IO[9|46] 13|2w10 2r35
 X 8 a-textio.ads
 49K13*Text_IO 471e16 13|1w10 1r27
-263U14*Put_Line 13|54s3
+263U14*Put_Line 13|58s3
 X 13 p4.adb
-5U11*P4 5b11 55l5 55t7
+5U11*P4 5b11 59l5 59t7
 6V12 ReverseInteger{integer} 6b12 6>28 15l7 15t21 18s16
 6i28 n{integer} 8r20
 7i5 reversed{integer} 11m7 11r25 14r12
 8i5 val{integer} 10r11 11r38 12m7 12r14
-16V12 IsPalindrome{boolean} 16b12 16>27 19l7 19t19 47s10
+16V12 IsPalindrome{boolean} 16b12 16>27 19l7 19t19 51s10
 16i27 n{integer} 18r12 18r31
-20i3 a{integer} 33m5 35r9 36r8 43r16 44r10 47r24 48r20 52m5 52r10
-21i3 b{integer} 37m7 40m7 43r11 44r14 47r28 48r24 50m7 50r12
-22i3 db{integer} 38m7 41m7 50r16
-23i3 max{integer} 30m7 30r15 33r10 37r12 40r18
-24i3 count{integer} 28m5 29r11 31m7 31r16
-25i3 largest{integer} 44r19 48m9 54r26
+20i3 a{integer} 37m5 39r9 40r8 47r16 48r10 51r24 52r20 56m5 56r10
+21i3 b{integer} 41m7 44m7 47r11 48r14 51r28 52r24 54m7 54r12
+22i3 db{integer} 42m7 45m7 54r16
+23i3 max{integer} 31m5 33m7 33r15 37r10 41r12 44r18
+24i3 count{integer} 29m5 30r12 32r11 34m7 34r16 36m5 39r19 58r62
+25i3 largest{integer} 48r19 52m9 58r98
+26i3 tmp{integer} 30m5 36r14
 
