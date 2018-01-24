@@ -1,5 +1,0 @@
-version: "Swift version 4.0.3 (swift-4.0.3-RELEASE)"
-options: "7b12c43fe7b0a7899603dc4767dd3138"
-build_time: [1513460619, 658485772]
-inputs:
-  "/home/arden/Programming/speed_test/p1/swift/Sources/swift/main.swift": [1513308763, 0]
