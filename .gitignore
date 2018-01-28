@@ -1,4 +1,10 @@
 __pycache__
 *.a
 *.exe
+go
+*.ali
+*.class
+*.o
+rust
+.build
 data

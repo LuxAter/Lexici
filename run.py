@@ -13,7 +13,7 @@ import yaml
 import table
 
 
-def run(program, count, args, title=None):
+def run(program, count, args, view, title=None):
     """Runs provided executable count times provided with args."""
     data = list()
     errored = False
@@ -41,6 +41,8 @@ def run(program, count, args, title=None):
             errored = 2
             break
         end = time.time()
+        if view is True:
+            print("\033[F\033[{}C{}".format(len(str(count)) * 2 + 20, res.stdout.decode('utf-8')[:-1]))
         data.append(end - start)
     if errored is False:
         run_count += 1
@@ -73,10 +75,10 @@ def diviation(times, avg):
     return math.sqrt(tot)
 
 
-def run_entry(program, count, args):
+def run_entry(program, count, args, view):
     """Generates dictionary entry relevant to provided arguments"""
     data = dict()
-    data["times"] = run(program, count, args)
+    data["times"] = run(program, count, args, view)
     if len(data["times"]) != 0:
         data["average"] = average(data["times"])
         data["min"] = min(data["times"])
@@ -128,7 +130,7 @@ def generate_cmds(args):
 def run_cmds(cmds, args):
     data = dict()
     for key, value in cmds.items():
-        ret = run_entry(value, args.runs, args.args)
+        ret = run_entry(value, args.runs, args.args, args.view)
         if len(ret["times"]) != 0:
             data[key] = ret
     return data
@@ -189,12 +191,13 @@ def display_result(data, sort):
 def display_data(data, sort, file):
     data_table = list()
     for key, value in data.items():
-        entry = [key, value['average'], value['min'], value['max'], value['diviation']]
+        entry = [key, value['average'], value['min'],
+                 value['max'], value['diviation']]
         data_table.append(entry)
     data_table = sorted(data_table, key=lambda x: x[sort])
     data_list = [[x[0], x[1], x[2], x[3], x[4]] for x in data_table]
     data_list = [["Executable", "Average",
-                      "Min", "Max", "Diviation"]] + data_list
+                  "Min", "Max", "Diviation"]] + data_list
     with open(file, 'w') as f:
         for row in data_list:
             for i, item in enumerate(row):
@@ -262,6 +265,10 @@ def main():
         default=False,
         type=str,
         help="Creates csv output format")
+    parser.add_argument(
+        "--view",
+        action="store_true",
+        help="View output of executables")
     args = prep_args(parser.parse_args())
     data = run_cmds(generate_cmds(args), args)
     if args.fileout == False:
