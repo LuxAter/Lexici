@@ -50,5 +50,5 @@ int main(int argc, char* argv[])
     }
     a--;
   }
-  printf("Largest palindrome multiples of %d digits: %d\n", count, largest);
+  printf("%d\n", largest);
 }

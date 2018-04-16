@@ -5,10 +5,8 @@
 int main(int argc, char* argv[])
 {
   unsigned long int n = 600851475143;
-  unsigned long int max = n;
   if (argc > 1) {
     n = atoi(argv[1]);
-    max = n;
   }
   unsigned long int last_factor = 1;
   if (n % 2 == 0) {
@@ -34,7 +32,5 @@ int main(int argc, char* argv[])
   if (n != 1) {
     last_factor = n;
   }
-  printf("The greatest prime factor of %lu: %lu\n", max, last_factor);
-
-  return 0;
+  printf("%lu\n", last_factor);
 }
