@@ -1,7 +1,7 @@
 SHELL = /bin/bash
 
 # DIRS = $(shell ls -d */)
-DIRS = p1 p2 p3
+DIRS = p1 p2 p3 p4
 
 ifndef .VERBOSE
   .SILENT:
