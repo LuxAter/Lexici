@@ -4,8 +4,7 @@ ifndef .VERBOSE
   .SILENT:
 endif
 
-EXE_FILES = $(shell find -name "*.c")
-EXE = $(EXE_FILES:%.c=%.a)
+EXE = $(shell find -name "*.py")
 
 define compile
 printf "%b" "\033[0;33m[ ] Compiling $(1)..."
@@ -22,7 +21,6 @@ endef
 define clean
 if [[ -e "$(1)" ]]; then \
     printf "%b" "\033[0;33m[ ] Removing $(1)...";\
-    rm $(1);\
     printf "%b\n" "\033[1K\033[G\033[0;32m[\xE2\x9C\x94] Removing $(1)\033[0m";\
 fi
 endef
@@ -30,7 +28,6 @@ endef
 define cleanDir
 if [[ -e "$(1)" ]]; then \
     printf "%b" "\033[0;97mRemoving $(1)...";\
-    rm $(1) -rf;\
     printf "%b\n" "\033[0;32m\xE2\x9C\x94\033[0m";\
 fi
 endef
@@ -46,15 +43,12 @@ clean: $(EXE)
 list: $(EXE)
 	printf "%b\n" "\033[0;$(LIST);1mListed all projects\033[0m"
 
-ifeq ($(CMD),clean)
-%.a: FORCE
-	$(call clean,$@)
-else ifeq ($(CMD),list)
-%.a: FORCE
-	printf "\033[$(LIST)m  $@\033[0m\n"
+ifeq ($(CMD),list)
+$(EXE): FORCE
+	printf "\033[$(LIST)m  $@\033[0m\n"
 else
-%.a: %.c
-	$(call compile,$@,clang $^ -lm -O3 -o $@)
+$(EXE): FORCE
+
 endif
 
 FORCE:

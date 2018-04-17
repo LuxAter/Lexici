@@ -19,8 +19,6 @@ $(2) > $@.log;\
   cat $@.log;\
   rm -f $@.log
 endef
-# Add just after if for errors.
-# cat $@.log;
 define clean
 if [[ -e "$(1)" ]]; then \
     printf "%b" "\033[0;33m[ ] Removing $(1)...";\
@@ -40,14 +38,20 @@ endef
 all: build
 
 build: $(EXE)
-	printf "%b\n" "\033[0;32;1mCompiled all projects\033[0m"
+	printf "%b\n" "\033[0;$(BUILD);1mCompiled all projects\033[0m"
 
 clean: $(EXE)
-	printf "%b\n" "\033[0;33;1mRemoved all projects\033[0m"
+	printf "%b\n" "\033[0;$(CLEAN);1mRemoved all projects\033[0m"
+
+list: $(EXE)
+	printf "%b\n" "\033[0;$(LIST);1mListed all projects\033[0m"
 
 ifeq ($(CMD),clean)
 %.a: FORCE
 	$(call clean,$@)
+else ifeq ($(CMD),list)
+%.a: FORCE
+	printf "\033[$(LIST)m  $@\033[0m\n"
 else
 %.a: %.cpp
 	$(call compile,$@,clang++ $^ -lm -O3 -o $@)
