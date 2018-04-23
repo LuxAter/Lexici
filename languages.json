@@ -1,0 +1,416 @@
+{
+  "Ada": {
+    "type": "programming",
+    "color": "#02f88c",
+    "extensions": [".adb", ".ada", ".ads"],
+    "comments": ["--"],
+    "id": 1
+  },
+  "AsciiDoc": {
+    "type": "prose",
+    "color": "",
+    "extensions": [".asciidoc", ".adoc", ".asc"],
+    "comments": [],
+    "id": 2
+  },
+  "Assembly": {
+    "type": "programming",
+    "color": "#6E4C13",
+    "extensions": [".asm", ".a51", ".inc", ".nasm"],
+    "comments": [],
+    "id": 3
+  },
+  "Bash": {
+    "type": "programming",
+    "color": "#89e051",
+    "extensions": [".bash"],
+    "comments": ["#"],
+    "id": 4
+  },
+  "Brainfuck": {
+    "type": "programming",
+    "color": "#2F2530",
+    "extensions": [".b", ".bf"],
+    "comments": [],
+    "id": 5
+  },
+  "C": {
+    "type": "programming",
+    "color": "#555555",
+    "extensions": [".c", ".cats", ".h", ".idc"],
+    "comments": ["//", "/*"],
+    "id": 6
+  },
+  "C#": {
+    "type": "programming",
+    "color": "#178600",
+    "extensions": [".cs", ".cake", ".cshtml", ".csx"],
+    "comments": ["//"],
+    "id": 7
+  },
+  "C++": {
+    "type": "programming",
+    "color": "#f34b7d",
+    "extensions": [".cpp", ".c++", ".cc", ".cp", ".cxx", ".h", ".h++", ".hh", ".hpp", ".hxx", ".inc", ".inl", ".ipp", ".re", ".tcc", ".tpp"],
+    "comments": ["//", "/*"],
+    "id": 8
+  },
+  "CMake": {
+    "type": "programming",
+    "color": "#0C7F00",
+    "extensions": [".cmake", ".cmake.in"],
+    "comments": [],
+    "id": 10
+  },
+  "COBOL": {
+    "type": "programming",
+    "color": "",
+    "extensions": [".cob", ".cbl", ".ccp", ".cobol", ".cpy"],
+    "comments": [],
+    "id": 11
+  },
+  "CSS": {
+    "type": "markup",
+    "color": "#563D7C",
+    "extensions": [".css"],
+    "comments": [],
+    "id": 14
+  },
+  "CSV": {
+    "type": "data",
+    "color": "",
+    "extensions": [".csv"],
+    "comments": [],
+    "id": 15
+  },
+  "Clojure": {
+    "type": "programming",
+    "color": "#DB5855",
+    "extensions": [".clj", ".boot", ".cl2", ".cljc", ".cljs", ".cljs.hl", ".cljscm", ".cljx", ".hic"],
+    "comments": [],
+    "id": 9
+  },
+  "CoffeeScript": {
+    "type": "programming",
+    "color": "#244776",
+    "extensions": [".coffee", "._coffee", ".cake", ".cjsx", ".iced"],
+    "comments": [],
+    "id": 12
+  },
+  "Common Lisp": {
+    "type": "programming",
+    "color": "#3FB68B",
+    "extensions": [".lisp", ".asd", ".cl", ".l", ".lsp", ".ny", ".podsl", ".sexp"],
+    "comments": [";"],
+    "id": 13
+  },
+  "Cuda": {
+    "type": "programming",
+    "color": "#F34B7D",
+    "extensions": [".cu", ".cuh"],
+    "comments": [],
+    "id": 16
+  },
+  "D": {
+    "type": "programming",
+    "color": "#Ba595E",
+    "extensions": [".d", ".di"],
+    "comments": [],
+    "id": 17
+  },
+  "Diff": {
+    "type": "data",
+    "color": "",
+    "extensions": [".diff", ".patch"],
+    "comments": [],
+    "id": 18
+  },
+  "E": {
+    "type": "programming",
+    "color": "#CCCE35",
+    "extensions": [".E"],
+    "comments": [],
+    "id": 19
+  },
+  "Emacs Lisp": {
+    "type": "programming",
+    "color": "#C065DB",
+    "extensions": [".el", ".emacs", ".emacs.desktop"],
+    "comments": [],
+    "id": 20
+  },
+  "F#": {
+    "type": "programming",
+    "color": "#B845FC",
+    "extensions": [".fs", ".fsi", ".fsx"],
+    "comments": [],
+    "id": 21
+  },
+  "Fish": {
+    "type": "programming",
+    "color": "#89E051",
+    "extensions": [".fish"],
+    "comments": [],
+    "id": 22
+  },
+  "Fortran": {
+    "type": "programming",
+    "color": "#4D41B1",
+    "extensions": [".f90", ".f", ".f03", ".f08", ".f77", ".f95", ".for", ".fpp"],
+    "comments": [],
+    "id": 23
+  },
+  "GLSL": {
+    "type": "programming",
+    "color": "",
+    "extensions": [".glsl", ".fp", ".frag", ".frg", ".fs", ".fsh", ".fshader", ".geo", ".geom", ".glslv", ".gshader", ".shader", ".tesc", ".tese", ".vert", ".vrx.", "vsh", ".vshader"],
+    "comments": [],
+    "id": 24
+  },
+  "Go": {
+    "type": "programming",
+    "color": "#375EAB",
+    "extensions": [".go"],
+    "comments": ["//"],
+    "id": 25
+  },
+  "HTML": {
+    "type": "markup",
+    "color": "#E34C26",
+    "extensions": [".html", ".htm", ".html.hl", ".inc", ".st", ".xht", ".xhtml"],
+    "comments": [],
+    "id": 26
+  },
+  "J": {
+    "type": "programming",
+    "color": "#9EEDFF",
+    "extensions": [".ijs"],
+    "comments": [],
+    "id": 27
+  },
+  "JSON": {
+    "type": "data",
+    "color": "#BFD4FF",
+    "extensions": [".json", ".geojson", ".JSON-tmLanguage", ".topojson"],
+    "comments": [],
+    "id": 30
+  },
+  "Java": {
+    "type": "programming",
+    "color": "#b07219",
+    "extensions": [".java"],
+    "comments": ["//"],
+    "id": 28
+  },
+  "JavaScript": {
+    "type": "programming",
+    "color": "#F1E05A",
+    "extensions": [".js", "._js", ".bones", ".es", ".es6", ".frag", ".gs", ".jake", ".jsb", ".jscad", ".jsfl", ".jsm", ".jss", ".mjs", ".njs", ".pac", ".sjs", ".ssjs", ".xsjs", ".xsjslib"],
+    "comments": ["//"],
+    "id": 29
+  },
+  "LLVM": {
+    "type": "programming",
+    "color": "#185619",
+    "extensions": [".ll"],
+    "comments": [],
+    "id": 33
+  },
+  "Less": {
+    "type": "markup",
+    "color": "",
+    "extensions": [".less"],
+    "comments": [],
+    "id": 31
+  },
+  "Lex": {
+    "type": "programming",
+    "color": "#DBCA00",
+    "extensions": [".l", ".lex"],
+    "comments": [],
+    "id": 32
+  },
+  "Lua": {
+    "type": "programming",
+    "color": "#000080",
+    "extensions": [".lua", ".fcgi", ".nse", ".pd_lua", ".rbxs", ".wlua"],
+    "comments": ["--"],
+    "id": 34
+  },
+  "M": {
+    "type": "programming",
+    "color": "",
+    "extensions": [".m4"],
+    "comments": [],
+    "id": 35
+  },
+  "Makefile": {
+    "type": "programming",
+    "color": "#427819",
+    "extensions": [".mak", ".d", ".make", ".mk", ".mkfile"],
+    "files": ["Makefile"],
+    "comments": ["#"],
+    "id": 36
+  },
+  "Markdown": {
+    "type": "prose",
+    "color": "",
+    "extensions": [".md", ".markdown", ".mdown", ".mdwn", ".mkd", ".mkdown", ".ron", ".workbook", ".emd"],
+    "comments": [],
+    "id": 37
+  },
+  "Objective-C": {
+    "type": "programming",
+    "color": "#438EFF",
+    "extensions": [".m", ".h"],
+    "comments": [],
+    "id": 38
+  },
+  "OpenCL": {
+    "type": "programming",
+    "color": "",
+    "extensions": [".cl", ".opencl"],
+    "comments": [],
+    "id": 39
+  },
+  "Perl": {
+    "type": "programming",
+    "color": "#0298C3",
+    "extensions": [".pl", ".al", ".cgi", ".fcgi", ".perl", ".ph", ".plx", ".pm", ".psgi", ".t"],
+    "comments": ["#"],
+    "id": 40
+  },
+  "Python": {
+    "type": "programming",
+    "color": "#3572A5",
+    "extensions": [".py", ".blz", ".cgi", ".fcgi", ".gyp", ".gypi", ".lmi", ".py3", ".pyde", ".pyi", ".pyp", ".pyt", ".pyw", ".rpy", ".spec", ".tac", ".wsgi", ".xpy"],
+    "comments": ["#"],
+    "id": 41
+  },
+  "R": {
+    "type": "programming",
+    "color": "#198CE7",
+    "extensions": [".r", ".rd", ".rsx"],
+    "comments": ["#"],
+    "id": 42
+  },
+  "Ruby": {
+    "type": "programming",
+    "color": "#701516",
+    "extensions": [".rb", ".builder", ".eye", ".fcgi", ".gemspec", ".god", ".jbuilder", ".mspec", ".pluginspec", ".podspec", ".rabl", ".rake", ".rbuild", ".rbw", ".rbx", ".ru", ".ruby", ".spec", ".thor", ".watchr"],
+    "comments": ["#"],
+    "id": 44
+  },
+  "Rust": {
+    "type": "programming",
+    "color": "#DEA584",
+    "extensions": [".rs", ".rs.in"],
+    "comments": ["//"],
+    "id": 45
+  },
+  "SQL": {
+    "type": "data",
+    "color": "",
+    "extensions": [".sql", ".cql", ".ddl", ".inc", ".mysql", ".prc", ".tab", ".udf", ".viw"],
+    "comments": [],
+    "id": 49
+  },
+  "SVG": {
+    "type": "data",
+    "color": "",
+    "extensions": [".svg"],
+    "comments": [],
+    "id": 50
+  },
+  "Sage": {
+    "type": "programming",
+    "color": "",
+    "extensions": [".sage", ".sagews"],
+    "comments": [],
+    "id": 46
+  },
+  "Sass": {
+    "type": "markup",
+    "color": "",
+    "extensions": [".sass"],
+    "comments": [],
+    "id": 47
+  },
+  "Scala": {
+    "type": "programming",
+    "color": "#C22D40",
+    "extensions": [".scala", ".sbt", ".sc"],
+    "comments": ["//"],
+    "id": 0
+  },
+  "Shell": {
+    "type": "programming",
+    "color": "#89E051",
+    "extensions": [".sh"],
+    "comments": [],
+    "id": 48
+  },
+  "Swift": {
+    "type": "programming",
+    "color": "#FFAC45",
+    "extensions": [".swift"],
+    "comments": ["//", "/*"],
+    "id": 51
+  },
+  "TeX": {
+    "type": "markup",
+    "color": "#3D6117",
+    "extensions": [".tex", ".aux", ".bbx", ".bib", ".cbx", ".cls", ".dtx", ".ins", ".lbx", ".ltx", ".mkii", ".mkiv", ".mkvi", ".sty", ".toc"],
+    "comments": ["%"],
+    "id": 52
+  },
+  "Text": {
+    "type": "prose",
+    "color": "",
+    "extensions": [".txt", ".fr", ".nb", ".ncl", ".no"],
+    "comments": [],
+    "id": 53
+  },
+  "TypeScript": {
+    "type": "programming",
+    "color": "#2B7489",
+    "extensions": [".ts", ".tsx"],
+    "comments": [],
+    "id": 54
+  },
+  "Vim Script": {
+    "type": "programming",
+    "color": "#199F4B",
+    "extensions": [".vim"],
+    "comments": [],
+    "id": 55
+  },
+  "Web Assembly": {
+    "type": "programming",
+    "color": "#04133B",
+    "extensions": [".wast", ".wat"],
+    "comments": [],
+    "id": 0
+  },
+  "YAML": {
+    "type": "data",
+    "color": "#BFFFCE",
+    "extensions": [".yml", ".reek", ".rviz", ".sublime-syntax", ".syntax", ".yaml", ".yaml-tmlanguage", ".yml.mysql"],
+    "comments": ["#"],
+    "id": 56
+  },
+  "Zsh": {
+    "type": "programming",
+    "color": "#89E051",
+    "extensions": [".zsh"],
+    "comments": [],
+    "id": 57
+  },
+  "reStructuredText": {
+    "type": "prose",
+    "color": "",
+    "extensions": [".rst", ".rest", ".rest.txt", ".rst.txt"],
+    "comments": [],
+    "id": 43
+  }
+}
