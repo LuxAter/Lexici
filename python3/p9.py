@@ -3,17 +3,6 @@
 import sys
 import math
 
-
-def gcd(a, b):
-    if a == 0 or b == 0:
-        return 0
-    elif a == b:
-        return a
-    elif a > b:
-        return gcd(a - b, b)
-    return gcd(a, b - a)
-
-
 def main():
     sum = 1000
     if len(sys.argv) > 1:

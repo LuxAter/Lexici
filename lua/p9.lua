@@ -6,18 +6,6 @@ function TableLength(T)
   return count
 end
 
-function gcd(a, b)
-  if(a == 0 or b == 0) then
-    return 0
-  elseif (a == b) then
-    return a
-  elseif(a > b) then
-    return gcd(a - b, b)
-  else
-    return gcd(a, b - a)
-  end
-end
-
 sum = 1000
 if(TableLength(arg) > 2) then
   sum = arg[1]

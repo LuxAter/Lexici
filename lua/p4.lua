@@ -51,4 +51,4 @@ while (a >= (10 * count)) do
   end
   a = a - 1
 end
-print(string.format("Largest palindrome multiples of %i digits: %i", count, largest))
+print(largest)

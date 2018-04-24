@@ -1,17 +1,5 @@
 #!/bin/bash
 
-gcd(){
-  if [[ $1 == 0 ]] || [[ $2 == 0 ]]; then
-    return 0
-  elif (( $1 == $2 )); then
-    return $1
-  elif (( $1 > $2 )); then
-    return gcd $(($1 - $2)) $2
-  else
-    return gcd $1 $(($2 - $1))
-  fi
-}
-
 let sum=1000
 if [[ "$1" != "" ]]; then
   sum=$1
