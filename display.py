@@ -93,7 +93,7 @@ def display_graph(data, gap=2, width=40, height=10, axis=True):
     if isinstance(normalizer, int):
         axis_width = len("{}".format(normalizer)) + 1
     else:
-        axis_width = len("{:.3}".format(normalizer)) + 1
+        axis_width = len("{:.4}".format(normalizer)) + 1
     width -= (axis_width + 1)
     bar_width = int(width / len(data)) - gap
     for i in range(height):
@@ -108,7 +108,7 @@ def display_graph(data, gap=2, width=40, height=10, axis=True):
                         end='')
                 else:
                     print(
-                        "{:{}.3}│".format(normalizer * (height - i) / height,
+                        "{:{}.4}│".format(normalizer * (height - i) / height,
                                           axis_width),
                         end='')
             else:

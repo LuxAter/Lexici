@@ -20,7 +20,7 @@ class Capture(Enum):
 
 
 def display_name(name):
-    names = {'cpp': 'C++', 'python3': 'Python', 'javascript': 'JavaScript'}
+    names = {'cpp': 'C++', 'python3': 'Python', 'javascript': 'JavaScript', 'csharp': 'C#'}
     if name in names:
         return names[name].title()
     return name.title()
@@ -134,7 +134,7 @@ def display(data, args):
         display_graph(format_graph_data(data, 'time.max'))
     if 'eff' in args.graph:
         par("Efficiency")
-        display_graph(format_graph_data(data, 'eff'))
+        display_graph(format_graph_data(data, 'eff'), 2, 80)
     if 'bytes' in args.graph:
         par('Bytes')
         display_graph(format_graph_data(data, 'size.bytes'))

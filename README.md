@@ -17,6 +17,30 @@ folder, along with more information about each language present.
 
 ## Languages ##
 
-* C++
-* C
-* Python3
+- [x] Rust
+- [ ] Kotlin
+- [x] Python
+- [ ] TypeScript
+- [ ] Go
+- [ ] Swift
+- [x] Javascript
+- [x] C#
+- [ ] F#
+- [ ] Clojure
+- [x] Bash
+- [ ] Scala
+- [ ] Haskell
+- [ ] Julia
+- [ ] Java
+- [ ] R
+- [x] Ruby
+- [ ] Erlang
+- [x] C++
+- [ ] Ocaml
+- [x] C
+- [ ] Groovy
+- [x] Lua
+- [ ] Perl
+- [ ] Cobol
+
+
