@@ -20,8 +20,7 @@ folder, along with more information about each language present.
 - [x] Rust
 - [ ] Kotlin
 - [x] Python
-- [ ] TypeScript
-- [ ] Go
+- [x] Go
 - [ ] Swift
 - [x] Javascript
 - [x] C#
