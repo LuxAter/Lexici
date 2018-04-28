@@ -20,7 +20,13 @@ class Capture(Enum):
 
 
 def display_name(name):
-    names = {'cpp': 'C++', 'python3': 'Python', 'javascript': 'JavaScript', 'csharp': 'C#'}
+    names = {
+        'cpp': 'C++',
+        'python3': 'Python',
+        'javascript': 'JavaScript',
+        'csharp': 'C#',
+        'fsharp': 'F#'
+    }
     if name in names:
         return names[name].title()
     return name.title()
@@ -103,10 +109,10 @@ def run(exes, files, reps, capture=[Capture.TIME, Capture.LOC]):
             data[language]['time']['max'] = max_t
         if Capture.LOC in capture:
             data[language]['size'] = dict()
-            if exe.endswith('a'):
+            if exe.endswith('.a') or exe.endswith('.exe'):
                 matching = [s for s in files if exe[:-2] in s]
                 for match in matching:
-                    if not match.endswith('.a'):
+                    if not match.endswith('.a') and not match.endswith('.exe'):
                         file = match
             else:
                 file = exe
@@ -116,8 +122,9 @@ def run(exes, files, reps, capture=[Capture.TIME, Capture.LOC]):
                 lines = len(f.readlines())
             data[language]['size']['lines'] = lines
         if Capture.LOC in capture and Capture.TIME in capture:
-            data[language]['eff'] = data[language]['size']['bytes'] * data[
-                language]['time']['avg']
+            data[language]['eff'] = 1 / (
+                data[language]['size']['bytes'] * data[language]['time']['avg']
+            )
     return data
 
 
@@ -134,7 +141,7 @@ def display(data, args):
         display_graph(format_graph_data(data, 'time.max'))
     if 'eff' in args.graph:
         par("Efficiency")
-        display_graph(format_graph_data(data, 'eff'), 2, 80)
+        display_graph(format_graph_data(data, 'eff'), 2, 80, 20)
     if 'bytes' in args.graph:
         par('Bytes')
         display_graph(format_graph_data(data, 'size.bytes'))
