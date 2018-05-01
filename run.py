@@ -6,6 +6,7 @@ import time
 import subprocess
 import sys
 import json
+import re
 from pprint import pprint
 from enum import Enum
 
@@ -25,7 +26,8 @@ def display_name(name):
         'python3': 'Python',
         'javascript': 'JavaScript',
         'csharp': 'C#',
-        'fsharp': 'F#'
+        'fsharp': 'F#',
+        'lisp': 'Common Lisp'
     }
     if name in names:
         return names[name].title()
@@ -56,13 +58,16 @@ def par(string, size=40):
     print("\033[1;4m{:^{}}\033[0m".format(string, size))
 
 
-def get_exes(names):
+def get_exes(names, black_list=[]):
     files = glob.glob('*/{}.*'.format(names))
     exes = []
+    black = re.compile('|'.join(['(' + f + ')' for f in black_list]))
     for file in files:
-        if os.path.isfile(os.path.join(os.getcwd(), file)) and os.access(
-                os.path.join(os.getcwd(), file), os.X_OK):
-            exes.append(file)
+        if os.path.isfile(os.path.join(os.getcwd(), file)) and os.access( os.path.join(os.getcwd(), file), os.X_OK):
+            if black_list != [] and not black.match(file):
+                exes.append(file)
+            elif black_list == []:
+                exes.append(file)
     return exes, files
 
 
@@ -174,6 +179,13 @@ def main():
         default=5,
         help='number of times to run each executable.')
     parser.add_argument(
+        '-b',
+        '--black',
+        type=str,
+        nargs='*',
+        default=[],
+        help='folders/files to not run.')
+    parser.add_argument(
         '--args', nargs='*', help='arguments to pass to the executables.')
 
     parser.add_argument(
@@ -196,7 +208,7 @@ def main():
         })
     args = parser.parse_args()
     title('RUNNING', 35)
-    exes, files = get_exes(args.exe)
+    exes, files = get_exes(args.exe, args.black)
     data = run(exes, files, args.reps)
     display(data, args)
 

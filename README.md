@@ -17,29 +17,33 @@ folder, along with more information about each language present.
 
 ## Languages ##
 
-- [x] Rust
-- [ ] Kotlin
-- [x] Python
-- [x] Go
-- [ ] Swift
-- [x] Javascript
-- [x] C#
-- [ ] F#
-- [ ] Clojure
+![Progress](http://progressed.io/bar/12?scale=25) <!-- 25 -->
+
+- [ ] Ada
 - [x] Bash
-- [ ] Scala
+- [x] C
+- [x] C#
+- [x] C++
+- [ ] Clojure
+- [ ] Cobol
+- [ ] Erlang
+- [x] F#
+- [x] Go
+- [ ] Groovy
 - [ ] Haskell
-- [ ] Julia
 - [ ] Java
+- [x] Javascript
+- [ ] Julia
+- [ ] Kotlin
+- [x] Lisp
+- [x] Lua
+- [ ] Ocaml
+- [ ] Perl
+- [x] Python
 - [ ] R
 - [x] Ruby
-- [ ] Erlang
-- [x] C++
-- [ ] Ocaml
-- [x] C
-- [ ] Groovy
-- [x] Lua
-- [ ] Perl
-- [ ] Cobol
+- [x] Rust
+- [ ] Scala
+- [ ] Swift
 
 
