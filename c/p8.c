@@ -22,8 +22,10 @@ int main(int argc, char* argv[])
   for(unsigned i = 0; i < strlen(number) - n; ++i){
     unsigned long current = 1;
     for(unsigned j = i; j < i + n; ++j){
+      printf("%u\n", j);
       current *= (number[j] - '0');
     }
+    printf("%lu\n", current);
     max_value = max(max_value, current);
   }
   printf("%lu\n", max_value);

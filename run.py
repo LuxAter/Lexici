@@ -63,7 +63,8 @@ def get_exes(names, black_list=[]):
     exes = []
     black = re.compile('|'.join(['(' + f + ')' for f in black_list]))
     for file in files:
-        if os.path.isfile(os.path.join(os.getcwd(), file)) and os.access( os.path.join(os.getcwd(), file), os.X_OK):
+        if os.path.isfile(os.path.join(os.getcwd(), file)) and os.access(
+                os.path.join(os.getcwd(), file), os.X_OK):
             if black_list != [] and not black.match(file):
                 exes.append(file)
             elif black_list == []:
@@ -117,7 +118,8 @@ def run(exes, files, reps, capture=[Capture.TIME, Capture.LOC]):
             if exe.endswith('.a') or exe.endswith('.exe'):
                 matching = [s for s in files if exe[:-2] in s]
                 for match in matching:
-                    if not match.endswith('.a') and not match.endswith('.exe'):
+                    if not match.endswith('.a') and not match.endswith(
+                            '.exe') and not match.endswith('.o'):
                         file = match
             else:
                 file = exe
