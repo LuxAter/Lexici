@@ -102,6 +102,7 @@ def run(exes, files, reps, capture=[Capture.TIME, Capture.LOC]):
     length = max(len(max(exes, key=len)) + 6 + (2 * len(str(reps))), 40)
     subtitle('Collecting Data', 35, length)
     data = {}
+    exes = sorted(exes)
     for exe in exes:
         language = os.path.dirname(exe)
         data[language] = dict()
@@ -169,6 +170,47 @@ def display(data, args):
             table_data[i] = 'size.lines'
     display_table(format_table_data(data, table_data))
 
+def save(data, args):
+    def gen_line(value, opts):
+        row = value['name']
+        if opts[0]:
+            row += ',{}'.format(value['time']['avg'])
+        if opts[1]:
+            row += ',{}'.format(value['time']['min'])
+        if opts[2]:
+            row += ',{}'.format(value['time']['max'])
+        if opts[3]:
+            row += ',{}'.format(value['size']['bytes'])
+        if opts[4]:
+            row += ',{}'.format(value['size']['lines'])
+        if opts[5]:
+            row += ',{}'.format(value['eff'])
+        return row
+    opts = [False] * 7
+    row = 'Name'
+    if 'avg' in args.table:
+        opts[0] = True
+        row += ',Average Time'
+    if 'min' in args.table:
+        opts[1] = True
+        row += ',Minimum Time'
+    if 'max' in args.table:
+        opts[2] = True
+        row += ',Maximum Time'
+    if 'bytes' in args.table:
+        opts[3] = True
+        row += ',Bytes'
+    if 'lines' in args.table:
+        opts[4] = True
+        row += ',Lines'
+    if 'eff' in args.table:
+        opts[5] = True
+        row += ',Efficiency'
+    f = open(args.csv, 'w')
+    f.write(row + '\n')
+    for key, value in data.items():
+        f.write(gen_line(value, opts) + '\n')
+
 
 def main():
     parser = argparse.ArgumentParser()
@@ -208,11 +250,19 @@ def main():
         choices={
             'color', 'name', 'min', 'max', 'avg', 'eff', 'bytes', 'lines'
         })
+    parser.add_argument(
+        '--csv',
+        default='',
+        help='Outputs values as CSV file'
+        )
     args = parser.parse_args()
     title('RUNNING', 35)
     exes, files = get_exes(args.exe, args.black)
     data = run(exes, files, args.reps)
-    display(data, args)
+    if args.csv is not '':
+        save(data, args)
+    else:
+        display(data, args)
 
 
 if __name__ == "__main__":
