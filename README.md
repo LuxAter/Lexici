@@ -40,7 +40,7 @@ folder, along with more information about each language present.
 - [ ] Ocaml
 - [x] Perl
 - [x] Python
-- [ ] R
+- [x] R
 - [x] Ruby
 - [x] Rust
 - [ ] Scala
