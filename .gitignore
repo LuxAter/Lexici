@@ -4,5 +4,7 @@ __pycache__
 *.ali
 *.class
 *.o
+*.cmi
+*.cmx
 .build
 data

@@ -27,7 +27,8 @@ def display_name(name):
         'javascript': 'JavaScript',
         'csharp': 'C#',
         'fsharp': 'F#',
-        'lisp': 'Common Lisp'
+        'lisp': 'Common Lisp',
+        'ocaml': 'OCaml'
     }
     if name in names:
         return names[name].title()
@@ -120,7 +121,7 @@ def run(exes, files, reps, capture=[Capture.TIME, Capture.LOC]):
                 matching = [s for s in files if exe[:-2] in s]
                 for match in matching:
                     if not match.endswith('.a') and not match.endswith(
-                            '.exe') and not match.endswith('.o'):
+                            '.exe') and not match.endswith('.o') and not match.endswith('.cmi') and not match.endswith('.cmx'):
                         file = match
             else:
                 file = exe
