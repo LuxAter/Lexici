@@ -17,9 +17,9 @@ folder, along with more information about each language present.
 
 ## Languages ##
 
-![Progress](http://progressed.io/bar/12?scale=25) <!-- 25 -->
+![Progress](http://progressed.io/bar/14?scale=25) <!-- 25 -->
 
-- [ ] Ada
+- [x] Ada
 - [x] Bash
 - [x] C
 - [x] C#
@@ -38,7 +38,7 @@ folder, along with more information about each language present.
 - [x] Lisp
 - [x] Lua
 - [ ] Ocaml
-- [ ] Perl
+- [x] Perl
 - [x] Python
 - [ ] R
 - [x] Ruby
