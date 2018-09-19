@@ -98,6 +98,12 @@ def run_exe(exe, reps, longest=0):
         exe, spacing, reps, reps))
     return min_t, (avg / reps), max_t
 
+def not_ends_with(match, ends):
+    for end in ends:
+        if match.endswith(end):
+            return False
+    return True
+
 
 def run(exes, files, reps, capture=[Capture.TIME, Capture.LOC]):
     length = max(len(max(exes, key=len)) + 6 + (2 * len(str(reps))), 40)
@@ -114,14 +120,14 @@ def run(exes, files, reps, capture=[Capture.TIME, Capture.LOC]):
             data[language]['time'] = dict()
             data[language]['time']['min'] = min_t
             data[language]['time']['avg'] = avg_t
+            data[language]['time']['inverse_avg'] = 1 / avg_t
             data[language]['time']['max'] = max_t
         if Capture.LOC in capture:
             data[language]['size'] = dict()
             if exe.endswith('.a') or exe.endswith('.exe'):
                 matching = [s for s in files if exe[:-2] in s]
                 for match in matching:
-                    if not match.endswith('.a') and not match.endswith(
-                            '.exe') and not match.endswith('.o') and not match.endswith('.cmi') and not match.endswith('.cmx'):
+                    if not_ends_with(match, ['.a', '.exe', '.o', '.cmi', '.cmx', '.ali']):
                         file = match
             else:
                 file = exe
@@ -139,24 +145,32 @@ def run(exes, files, reps, capture=[Capture.TIME, Capture.LOC]):
 
 def display(data, args):
     subtitle('Results', 35)
+    count = len(data)
+    row, col = os.popen('stty size', 'r').read().split()
+    width = min(count * 6, int(col))
+    height = min(20, int(row))
     if 'avg' in args.graph:
-        par('Average Time')
-        display_graph(format_graph_data(data, 'time.avg'))
+        par('Average Time', width)
+        display_graph(format_graph_data(data, 'time.avg'), 2, width, height)
+    if 'iavg' in args.graph:
+        par('Inverse Average Time', width)
+        display_graph(
+            format_graph_data(data, 'time.inverse_avg'), 2, width, height)
     if 'min' in args.graph:
-        par('Minimum Time')
-        display_graph(format_graph_data(data, 'time.min'))
+        par('Minimum Time', width)
+        display_graph(format_graph_data(data, 'time.min'), 2, width, height)
     if 'max' in args.graph:
-        par('Maximum Time')
-        display_graph(format_graph_data(data, 'time.max'))
+        par('Maximum Time', width)
+        display_graph(format_graph_data(data, 'time.max'), 2, width, height)
     if 'eff' in args.graph:
-        par("Efficiency")
-        display_graph(format_graph_data(data, 'eff'), 2, 80, 20)
+        par("Efficiency", width)
+        display_graph(format_graph_data(data, 'eff'), 2, width, height)
     if 'bytes' in args.graph:
-        par('Bytes')
-        display_graph(format_graph_data(data, 'size.bytes'))
+        par('Bytes', width)
+        display_graph(format_graph_data(data, 'size.bytes'), 2, width, height)
     if 'lines' in args.graph:
-        par('Lines')
-        display_graph(format_graph_data(data, 'size.lines'))
+        par('Lines', width)
+        display_graph(format_graph_data(data, 'size.lines'), 2, width, height)
     table_data = args.table
     for i, value in enumerate(table_data):
         if value == 'avg':
@@ -170,6 +184,7 @@ def display(data, args):
         elif value == 'lines':
             table_data[i] = 'size.lines'
     display_table(format_table_data(data, table_data))
+
 
 def save(data, args):
     def gen_line(value, opts):
@@ -187,6 +202,7 @@ def save(data, args):
         if opts[5]:
             row += ',{}'.format(value['eff'])
         return row
+
     opts = [False] * 7
     row = 'Name'
     if 'avg' in args.table:
@@ -241,7 +257,7 @@ def main():
         default=['eff'],
         nargs='*',
         help='data sets to graph',
-        choices={'min', 'max', 'avg', 'eff', 'bytes', 'lines'})
+        choices={'min', 'max', 'avg', 'iavg', 'eff', 'bytes', 'lines'})
     parser.add_argument(
         '-t',
         '--table',
@@ -251,11 +267,7 @@ def main():
         choices={
             'color', 'name', 'min', 'max', 'avg', 'eff', 'bytes', 'lines'
         })
-    parser.add_argument(
-        '--csv',
-        default='',
-        help='Outputs values as CSV file'
-        )
+    parser.add_argument('--csv', default='', help='Outputs values as CSV file')
     args = parser.parse_args()
     title('RUNNING', 35)
     exes, files = get_exes(args.exe, args.black)

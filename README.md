@@ -26,8 +26,10 @@ folder, along with more information about each language present.
 - [x] C++
 - [ ] Clojure
 - [ ] Cobol
+- [ ] D
 - [ ] Erlang
 - [x] F#
+- [ ] Fortran
 - [x] Go
 - [ ] Groovy
 - [ ] Haskell
