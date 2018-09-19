@@ -179,7 +179,7 @@
     "type": "programming",
     "color": "#4D41B1",
     "extensions": [".f90", ".f", ".f03", ".f08", ".f77", ".f95", ".for", ".fpp"],
-    "comments": [],
+    "comments": ["!"],
     "files": [],
     "id": 23
   },
