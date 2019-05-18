@@ -31,7 +31,7 @@ def display_name(name):
         'ocaml': 'OCaml'
     }
     if name in names:
-        return names[name].title()
+        return names[name]
     return name.title()
 
 

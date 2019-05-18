@@ -17,7 +17,7 @@ folder, along with more information about each language present.
 
 ## Languages ##
 
-![Progress](http://progressed.io/bar/14?scale=25) <!-- 25 -->
+![Progress](http://progressed.io/bar/16?scale=28)
 
 - [x] Ada
 - [x] Bash
@@ -29,7 +29,7 @@ folder, along with more information about each language present.
 - [ ] D
 - [ ] Erlang
 - [x] F#
-- [ ] Fortran
+- [x] Fortran
 - [x] Go
 - [ ] Groovy
 - [ ] Haskell

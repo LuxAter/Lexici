@@ -179,7 +179,7 @@
     "type": "programming",
     "color": "#4D41B1",
     "extensions": [".f90", ".f", ".f03", ".f08", ".f77", ".f95", ".for", ".fpp"],
-    "comments": ["!"],
+    "comments": [],
     "files": [],
     "id": 23
   },
@@ -206,6 +206,14 @@
     "comments": [],
     "files": [],
     "id": 26
+  },
+  "Haskell": {
+    "type": "programming",
+    "color": "#5E5086",
+    "extensions": [".hs", ".hsc"],
+    "comments": ["--"],
+    "files": [],
+    "id": 0
   },
   "J": {
     "type": "programming",
@@ -297,9 +305,9 @@
   },
   "OCaml": {
     "type": "programming",
-    "color": "#3BE133",
+    "color": "#3be133",
     "extensions": [".ml", ".eliom", ".eliomi", ".ml4", ".mli", ".mll", ".mly"],
-    "comments": ["(*"],
+    "comments": [],
     "files": [],
     "id": 255
   },
