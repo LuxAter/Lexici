@@ -1,7 +1,6 @@
-! Why can I not return an integer?
 real function SumDivisible(n, max)
-  integer, intent(in) :: n ! input
-  integer, intent(in) :: max ! input
+  integer, intent(in) :: n
+  integer, intent(in) :: max
   integer :: p
   p = max / n
   p = n * (p * (p + 1)) / 2
