@@ -4,7 +4,7 @@ ifndef .VERBOSE
   .SILENT:
 endif
 
-EXE_FILES = $(shell find -name "*.cpp")
+EXE_FILES = $(shell find -name "*.cpp" -print0 | sort -z | xargs -0)
 EXE = $(EXE_FILES:%.cpp=%.a)
 
 define compile
@@ -26,6 +26,20 @@ if [[ -e "$(1)" ]]; then \
     printf "%b\n" "\033[1K\033[G\033[0;32m[\xE2\x9C\x94] Removing $(1)\033[0m";\
 fi
 endef
+define run
+printf "\033[0;33m[%2d/%2d] Running $(1)..." 0 $(RUN_COUNT)
+total=0;\
+for i in {1..$(RUN_COUNT)}; do\
+  printf "\033[1K\033[G\033[0;33m[%2d/%2d] Running $(1)..." $$i $(RUN_COUNT);\
+  st=$$(date +%s%N) ;\
+  ./$(1) > /dev/null;\
+  et=$$(date +%s%N);\
+  total=$$(($$total + ($$et-$$st)));\
+done;\
+total=$$(echo "scale=10;$$total/$(RUN_COUNT)/1000000000" | bc);\
+echo "$(2) $$total $$(stat --printf=%s $(2))" >> .res ;\
+printf "\033[1K\033[G\033[0;$(RUN)m[%2d/%2d] Running %5s %s\n" $(RUN_COUNT) $(RUN_COUNT) "$(1)" "$$total"
+endef
 
 define cleanDir
 if [[ -e "$(1)" ]]; then \
@@ -46,15 +60,25 @@ clean: $(EXE)
 list: $(EXE)
 	printf "%b\n" "\033[0;$(LIST);1mListed all projects\033[0m"
 
+run: pre-run $(EXE)
+	printf "%b\n" "\033[0;$(RUN);1mRan all projects\033[0m"
+
 ifeq ($(CMD),clean)
 %.a: FORCE
 	$(call clean,$@)
 else ifeq ($(CMD),list)
 %.a: FORCE
-	printf "\033[$(LIST)m  $@\033[0m\n"
+	printf "\033[$(LIST)m[%-10s]  %-5s\033[0m\n" "C++" "$@"
+else ifeq ($(CMD),run)
+%.a: %.cpp FORCE
+	$(call run,$@,$<)
+
 else
 %.a: %.cpp
 	$(call compile,$@,clang++ $^ -lm -O3 -o $@)
 endif
+
+pre-run: FORCE
+	if [[ -f ".res" ]]; then rm .res; fi
 
 FORCE:
