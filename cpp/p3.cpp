@@ -1,9 +1,8 @@
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cmath>
+#include <cstdlib>
+#include <iostream>
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
   unsigned long int n = 600851475143;
   if (argc > 1) {
     n = atoi(argv[1]);
@@ -32,5 +31,5 @@ int main(int argc, char* argv[])
   if (n != 1) {
     last_factor = n;
   }
-  printf("%lu\n", last_factor);
+  std::cout << last_factor << std::endl;
 }

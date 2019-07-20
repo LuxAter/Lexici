@@ -1,6 +1,6 @@
 #include <cmath>
-#include <cstdio>
 #include <cstdlib>
+#include <iostream>
 
 static unsigned short vals[20][20] = {
     {8, 2, 22, 97, 38, 15, 0, 40, 0, 75, 4, 5, 7, 78, 52, 12, 50, 77, 91, 8},
@@ -69,5 +69,5 @@ int main(int argc, char *argv[]) {
       longest = std::fmax(get_max(x, y, len), longest);
     }
   }
-  printf("%llu\n", longest);
+  std::cout << longest << std::endl;
 }

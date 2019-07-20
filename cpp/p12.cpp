@@ -1,6 +1,6 @@
 #include <algorithm>
 #include <cmath>
-#include <cstdio>
+#include <iostream>
 #include <vector>
 
 int main(int argc, char *argv[]) {
@@ -43,5 +43,5 @@ int main(int argc, char *argv[]) {
     cnt = dn * dn1;
     dn = dn1;
   }
-  printf("%u\n", n * (n - 1) / 2);
+  std::cout << n * (n - 1) / 2 << std::endl;
 }

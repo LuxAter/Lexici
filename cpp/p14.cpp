@@ -1,5 +1,5 @@
 #include <cmath>
-#include <cstdio>
+#include <iostream>
 #include <map>
 
 std::map<unsigned long, unsigned> values = {{1, 1}};
@@ -32,5 +32,5 @@ int main(int argc, char *argv[]) {
       num = i;
     }
   }
-  printf("%lu\n", num);
+  std::cout << num << std::endl;
 }

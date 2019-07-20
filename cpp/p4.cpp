@@ -1,8 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include <cstdlib>
+#include <iostream>
 
-int ReverseInteger(int val)
-{
+int ReverseInteger(int val) {
   int reversed = 0;
   while (val > 0) {
     reversed = (10 * reversed) + (val % 10);
@@ -11,13 +10,9 @@ int ReverseInteger(int val)
   return reversed;
 }
 
-int IsPalindrome(int n)
-{
-  return n == ReverseInteger(n);
-}
+int IsPalindrome(int n) { return n == ReverseInteger(n); }
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
   int count = 3;
   if (argc > 1) {
     count = atoi(argv[1]);
@@ -50,5 +45,5 @@ int main(int argc, char* argv[])
     }
     a--;
   }
-  printf("%d\n", largest);
+  std::cout << largest << std::endl;
 }

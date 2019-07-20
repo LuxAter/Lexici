@@ -1,9 +1,8 @@
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cmath>
+#include <cstdlib>
+#include <iostream>
 
-bool IsPrime(unsigned n)
-{
+bool IsPrime(unsigned n) {
   if (n == 1) {
     return false;
   } else if (n < 4) {
@@ -29,8 +28,7 @@ bool IsPrime(unsigned n)
   return true;
 }
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
   int limit = 10001;
   if (argc > 1) {
     limit = atoi(argv[1]);
@@ -43,5 +41,5 @@ int main(int argc, char* argv[])
       count++;
     }
   }
-  printf("%u\n", val);
+  std::cout << val << std::endl;
 }

@@ -1,15 +1,14 @@
-#include <math.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include <cmath>
+#include <cstdlib>
+#include <iostream>
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char *argv[]) {
   unsigned long long limit = 2000000;
   if (argc > 1) {
     limit = atoi(argv[1]);
   }
   unsigned long long cross_limit = floor(sqrt(limit));
-  bool sieve[2000000] = { false };
+  bool sieve[2000000] = {false};
   for (unsigned long long n = 4; n < limit; n += 2) {
     sieve[n] = true;
   }
@@ -26,5 +25,5 @@ int main(int argc, char* argv[])
       sum += n;
     }
   }
-  printf("%llu\n", sum);
+  std::cout << sum << std::endl;
 }
