@@ -1,5 +1,5 @@
 #include <cmath>
-#include <cstdio>
+#include <iostream>
 
 int main(int argc, char *argv[]) {
 
@@ -12,6 +12,6 @@ int main(int argc, char *argv[]) {
   for (double i = size * 2; i > size; --i) {
     result *= (i / (i - size));
   }
-  printf("%lu\n", static_cast<unsigned long>(result));
+  std::cout << static_cast<unsigned long>(result) << std::endl;
   return 0;
 }

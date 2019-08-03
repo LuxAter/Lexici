@@ -1,9 +1,12 @@
-#include <cmath>
-#include <iostream>
-#include <string>
-#include <vector>
+with Ada.Text_IO; use Ada.Text_IO;
+with Ada.Integer_Text_IO; use Ada.Integer_Text_IO;
+with Ada.Command_Line; use Ada.Command_Line;
 
-std::vector<std::string> number = {
+procedure P13 is
+  nums : Integer := 10;
+  sum : array (1..60) of Integer := (others => 0);
+  add : array (1..60) of Integer := (others => 0);
+  number : constant array(1..100) of String(1..50) := (
     "37107287533902102798797998220837590246510135740250",
     "46376937677490009712648124896970078050417018260538",
     "74324986199524741059474233309513058123726617309629",
@@ -103,39 +106,34 @@ std::vector<std::string> number = {
     "77158542502016545090413245809786882778948721859617",
     "72107838435069186155435662884062257473692284509516",
     "20849603980134001723930671666823555245252804609722",
-    "53503534226472524250874054075591789781264330331690"};
-
-int main(int argc, char *argv[]) {
-  int nums = 10;
-  if (argc > 1) {
-    nums = atoi(argv[1]);
-  }
-
-  std::vector<uint8_t> sum(50 + 10, 0);
-
-  for (unsigned i = 0; i < number.size(); ++i) {
-    std::vector<uint8_t> add;
-    for (auto j = number[i].rbegin(); j != number[i].rend(); ++j) {
-      add.push_back(*j - '0');
-    }
-    add.resize(sum.size(), 0);
-    for (unsigned j = 0; j < add.size(); ++j) {
-      sum[j] += add[j];
-      if (sum[j] >= 10) {
-        sum[j + 1]++;
-        sum[j] -= 10;
-      }
-    }
-  }
-
-  auto i = sum.rbegin();
-  while (i != sum.rend() && *i == 0) {
-    i++;
-  }
-  while (nums > 0 && i != sum.rend()) {
-    printf("%u", *i++);
-    nums--;
-  }
-  printf("\n");
-  return 0;
-}
+    "53503534226472524250874054075591789781264330331690");
+  k : Integer;
+begin
+  if Argument_Count >= 1 then
+    nums := Integer'Value(Argument(1));
+  end if;
+  for i in 1..100 loop
+    add := (others => 0);
+    k := 1;
+    for j in reverse 1..50 loop
+      add(k) := Integer(Character'Pos(number(i)(j)) - 48);
+      k := k + 1;
+    end loop;
+    for j in 1..60 loop
+      sum(j) := sum(j) + add(j);
+      if sum(j) >= 10 then
+        sum(j + 1) := sum(j + 1) + 1;
+        sum(j) := sum(j) - 10;
+      end if;
+    end loop;
+  end loop;
+  k := 60;
+  while k /= 0 and sum(k) = 0 loop
+    k := k - 1;
+  end loop;
+  while nums > 0 and k /= 0 loop
+    Put(sum(k), Width => 0);
+    k := k - 1;
+    nums := nums - 1;
+  end loop;
+end P13;
