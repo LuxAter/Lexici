@@ -47,13 +47,13 @@ unsigned long long get_max(const unsigned &x, const unsigned &y,
                            const unsigned &len) {
   unsigned long long horiz = 1, vert = 1, diag_r = 1, diag_l = 1;
   for (unsigned delta = 0; delta < len; ++delta) {
-    if (x < 20 - len)
+    if (x < 20 - len) {
       horiz *= vals[y][x + delta];
-    vert *= vals[y + delta][x];
-    if (x < 20 - len)
       diag_r *= vals[y + delta][x + delta];
+    }
     if (x >= len)
       diag_l *= vals[y + delta][x - delta];
+    vert *= vals[y + delta][x];
   }
   return std::fmax(std::fmax(horiz, vert), std::fmax(diag_r, diag_l));
 }
