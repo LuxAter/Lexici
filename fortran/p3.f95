@@ -31,4 +31,4 @@ program p3
     last_factor = n
   endif
   print *,last_factor
-end program
+end program p3

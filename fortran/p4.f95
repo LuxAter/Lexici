@@ -58,4 +58,4 @@ program p4
     integer, intent(in) :: n
     tf = n .eq. reverse_integer(n)
   endfunction
-endprogram
+end program p4

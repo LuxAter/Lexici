@@ -3,7 +3,7 @@ program p7
   integer :: count = 1
   integer :: val = 1
   character(len=32) :: arg
-  if(command_argument_count() .ge. 1) then
+  if(command_argument_count() .ge. 2) then
     call get_command_argument(1, arg)
     read(arg,*) limit
   endif

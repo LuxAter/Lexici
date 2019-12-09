@@ -68,5 +68,4 @@ program p11
     enddo
     GetMax = max(horiz, vert, diag_r, diag_l)
   end function GetMax 
-
 endprogram
