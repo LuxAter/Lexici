@@ -112,6 +112,6 @@ appreciated**.
 
 ## License
 
-Distributed under the GNU GP Lvi license. See
+Distributed under the GNU GPL3 license. See
 [`LICENSE.md`](https://github.com/LuxAter/Lexici/blob/development/LICENSE.txt)
 for more information.
