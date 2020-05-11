@@ -157,9 +157,15 @@ while getopts "h?brcpqvgs:e:" opt; do
 done
 
 if [[ "${@:$OPTIND:1}" == "push" ]]; then
+  ICONS=""
   for key in "${!TARGETS[@]}"; do
-    curl "https://img.shields.io/badge/$key-10-brightgreen.svg?style=flat-square" > "./assets/$key.svg"
+    count=$(ls "${key,,}" | sort | tail -1 | sed 's/p\([^\.]*\).*/\1/g')
+    if [[ ! -f "./assets/$key-$count.svg" ]]; then
+      curl "https://img.shields.io/badge/$key-$count-brightgreen.svg?style=flat-square" > "./assets/$key-$count.svg"
+    fi
+    ICONS="$ICONS<img src=\\\"https://github.com/LuxAter/Lexici/blob/master/assets/$key-$count.svg\\\">\n"
   done
+  awk "BEGIN{p=1}/^<!-- START -->/{print;print \"$ICONS\";p=0}/^<!-- END -->/{p=1}p" README.md > README.md
   exit 0
 fi
 if [[ ! -z "${@:$OPTIND}" ]]; then
