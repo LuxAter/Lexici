@@ -1,4 +1,3 @@
-<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/RUBY-10.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/CPP-15.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/PERL-10.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/GO-10.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/R-10.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/FORTRAN-15.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/LISP-10.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/PYTHON3-10.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/RUST-12.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/BASH-10.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/ADA-15.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/C-10.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/CSHARP-10.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/JAVASCRIPT-10.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/FSHARP-10.svg\">\n<img src=\"https://github.com/LuxAter/Lexici/blob/master/assets/LUA-10.svg\">\n
 <p align="center">
   <h1 align="center">SPECULA</h1>
   <p align="center">
@@ -26,7 +25,6 @@
 <img src="https://github.com/LuxAter/Lexici/blob/master/assets/JAVASCRIPT-10.svg">
 <img src="https://github.com/LuxAter/Lexici/blob/master/assets/FSHARP-10.svg">
 <img src="https://github.com/LuxAter/Lexici/blob/master/assets/LUA-10.svg">
-
 <!-- END -->
     <br/>
     Programming Language Lexicon

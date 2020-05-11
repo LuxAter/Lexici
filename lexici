@@ -163,8 +163,9 @@ if [[ "${@:$OPTIND:1}" == "push" ]]; then
     if [[ ! -f "./assets/$key-$count.svg" ]]; then
       curl "https://img.shields.io/badge/$key-$count-brightgreen.svg?style=flat-square" > "./assets/$key-$count.svg"
     fi
-    ICONS="$ICONS<img src=\\\"https://github.com/LuxAter/Lexici/blob/master/assets/$key-$count.svg\\\">\n"
+    ICONS="$ICONS<img src=\\\"https://github.com/LuxAter/Lexici/blob/master/assets/$key-$count.svg\\\">\\n"
   done
+  ICONS=${ICONS%$'\\n'}
   awk -i inplace "BEGIN{p=1}/^<!-- START -->/{print;print \"$ICONS\";p=0}/^<!-- END -->/{p=1}p" README.md
   exit 0
 fi
