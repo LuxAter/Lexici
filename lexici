@@ -156,6 +156,12 @@ while getopts "h?brcpqvgs:e:" opt; do
   esac
 done
 
+if [[ "${@:$OPTIND:1}" == "push" ]]; then
+  for key in "${!TARGETS[@]}"; do
+    curl "https://img.shields.io/badge/$key-10-brightgreen.svg?style=flat-square" > "./assets/$key.svg"
+  done
+  exit 0
+fi
 if [[ ! -z "${@:$OPTIND}" ]]; then
   SPECIFIED=(${@:$OPTIND})
 fi
