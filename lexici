@@ -1,0 +1,183 @@
+#!/bin/bash
+
+HELP=0
+RUN=0
+BUILD=0
+SAMPLES=5
+QUIET=0
+VERBOSE=0
+CLEAN=0
+PLOT=0
+EXCLUDE=()
+SPECIFIED=()
+
+declare -A TARGETS
+
+function declareTarget() {
+  KEY="${1^^}"
+  TARGETS["$KEY"]="$2:$3:${@:4}"
+}
+
+declareTarget "ada"        "adb"  "a" "gnatmake <IN>  -o  <OUT>"
+declareTarget "bash"       "sh"   ""  ""
+declareTarget "c"          "c"    "a" "clang    <IN>  -lm -O3   -o <OUT>"
+declareTarget "cpp"        "cpp"  "a" "clang++  <IN>  -O3 -o    <OUT>"
+declareTarget "csharp"     "cs"   "a" "mcs      <IN>  -out:<OUT>"
+declareTarget "fortran"    "f95"  "a" "gfortran <IN>  -O3 -o    <OUT>"
+declareTarget "fsharp"     "fs"   "a" "fsharpc  <IN>  --out:<OUT>"
+declareTarget "go"         "go"   "a" "go       build -o  <OUT> <IN>"
+declareTarget "javascript" "js"   ""  ""
+declareTarget "lisp"       "lisp" ""  ""
+declareTarget "lua"        "lua"  ""  ""
+declareTarget "perl"       "pl"   ""  ""
+declareTarget "python3"    "py"   ""  ""
+declareTarget "r"          "r"    ""  ""
+declareTarget "ruby"       "rb"   ""  ""
+declareTarget "rust"       "rs"   "a" "rustc    <IN>  -o  <OUT>"
+
+function execCmd() {
+  if [[ $QUIET == 0 ]]; then
+    echo "==> $@"
+  fi
+  if [[ $VERBOSE == 1 ]]; then
+    eval "$@"
+  else
+    eval "$@ >&/tmp/error"
+    if [[ $? != 0 ]]; then
+      echo "$(</tmp/error)"
+    fi
+  fi
+}
+
+function buildTarget() {
+  key="${1^^}"
+  dir="${1,,}"
+  target="${TARGETS["$key"]}"
+  targetExt="${target%%:*}"
+  target="${target#*:}"
+  targetOutExt="${target%%:*}"
+  targetCmd="${target#*:}"
+  if [[ -z "$targetOutExt" ]]; then
+    return 0
+  fi
+  echo "=> Building $key"
+  for filename in "./$dir"/*".$targetExt"; do
+    baseName="${filename%.*}"
+    inFile="$baseName.$targetExt"
+    outFile="$baseName.$targetOutExt"
+    buildCmd=$(echo "$targetCmd" | sed -e "s~<BASE>~$baseName~g" -e "s~<IN>~$inFile~g" -e "s~<OUT>~$outFile~g")
+    if [[ ! -f "$outFile" ]] || [[ "$inFile" -nt "$outFile" ]]; then
+      execCmd "$buildCmd"
+    fi
+  done
+}
+function cleanTarget() {
+  key="${1^^}"
+  dir="${1,,}"
+  target="${TARGETS["$key"]}"
+  targetExt="${target%%:*}"
+  target="${target#*:}"
+  targetOutExt="${target%%:*}"
+  if [[ -z "$targetOutExt" ]]; then
+    return 0
+  fi
+  echo "=> Cleaning $key"
+  execCmd "rm $dir/*.$targetOutExt"
+}
+function runTarget() {
+  key="${1^^}"
+  dir="${1,,}"
+  target="${TARGETS["$key"]}"
+  targetExt="${target%%:*}"
+  target="${target#*:}"
+  targetOutExt="${target%%:*}"
+  targetCmd="${target#*:}"
+  if [[ -z "$targetOutExt" ]]; then
+    targetOutExt="$targetExt"
+  fi
+  echo "=> Running $key"
+  if [[ -f "./$dir/.res" ]]; then
+    rm "./$dir/.res"
+  fi
+  for filename in "./$dir"/*".$targetOutExt"; do
+    st=$(date +%s%N)
+    for i in $(seq 1 $SAMPLES); do
+      printf "\033[1K\033[G==> %15s [%2d/%2d]" "$filename" $i $SAMPLES
+      execCmd "$filename"
+    done
+    et=$(date +%s%N)
+    elapsed=$(echo "scale=10;$((et-st))/$SAMPLES/1000000000" | bc)
+    echo "$filename $elapsed $(stat --printf=%s ${filename%.*}.$targetExt)" >> "./$dir/.res"
+    printf "\033[1K\033[G==> %15s [%2d/%2d] %2.5f\n" "$filename" $SAMPLES $SAMPLES "$elapsed"
+  done
+}
+
+function execTargets() {
+  if [[ "${#SPECIFIED[@]}" != 0 ]]; then
+    for key in "${SPECIFIED[@]}"; do
+        $1 "${key^^}"
+    done
+  else
+    for key in "${!TARGETS[@]}"; do
+      if [[ ! "${EXCLUDE[@]}" =~ "${key}" ]]; then
+        $1 "$key"
+      fi
+    done
+  fi
+}
+
+function showHelp() {
+  printf "usage: run.sh [OPTIONS]\n"
+  printf "Project Euler comparision project.\n\n"
+  printf "Options:\n"
+  printf "  -h|-?  display this help message\n"
+  printf "  -r     run all compile targets\n"
+  printf "  -b     compile all targets\n"
+  printf "  -c     remove all built targets\n"
+  printf "  -p|-g  plot statistics captures from run[WIP]\n"
+  printf "  -s=    number of samples to take\n"
+  printf "  -e=    targets which to exclude\n"
+}
+
+while getopts "h?brcpqvgs:e:" opt; do
+  case "$opt" in
+    h|\?)
+      showHelp
+      exit 0
+      ;;
+    b) BUILD=1 ;;
+    r) RUN=1 ;;
+    c) CLEAN=1 ;;
+    q) QUITE=1 ;;
+    v) VERBOSE=1 ;;
+    p|g) PLOT=1 ;;
+    s) SAMPLES=$OPTARG ;;
+    e) EXCLUDE+=(${OPTARG^^}) ;;
+  esac
+done
+
+if [[ ! -z "${@:$OPTIND}" ]]; then
+  SPECIFIED=(${@:$OPTIND})
+fi
+
+if [[ $CLEAN == 0 ]] && [[ $BUILD == 0 ]] && [[ $RUN == 0 ]] && [[ $PLOT == 0 ]]; then
+  BUILD=1
+  RUN=1
+fi
+
+if [[ $CLEAN == 1 ]]; then
+  execTargets cleanTarget
+fi
+if [[ $BUILD == 1 ]]; then
+  execTargets buildTarget
+fi
+if [[ $RUN == 1 ]]; then
+  currentQuiet=$QUIET
+  QUIET=1
+  execTargets runTarget 
+  QUIET=$currentQuiet
+fi
+if [[ $PLOT == 1 ]]; then
+  echo "Plotting is a work in progress"
+  exit 1
+fi

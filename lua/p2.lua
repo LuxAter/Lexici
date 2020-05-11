@@ -1,11 +1,26 @@
+#!/usr/bin/lua
+
+function TableLength(T)
+  local count = 0
+  for _ in pairs(T) do count = count + 1 end
+  return count
+end
+
 limit = 4000000
 sum = 0
+a = 1
 b = 1
 c = 2
-while c < limit do
+
+if(TableLength(arg) > 2) then
+  limit = tonumber(arg[1])
+end
+
+while(c < limit) do
   sum = sum + c
   a = b + c
   b = c + a
   c = a + b
 end
+
 print(sum)
